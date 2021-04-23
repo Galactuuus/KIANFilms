@@ -4,15 +4,20 @@ const fetchRegister = async (email, userName, password, born) => {
 
         const urlLogin = 'http://localhost:4000/user/signup';
 
+        const body = {
+            "email": email,
+            "userName": userName,
+            "password": password,
+            "born": born
+        }
+
         const res = await fetch(urlLogin, {
             method: 'POST',
-            headers: { 'email': email, 'userName':userName, 'password': password, 'born':born }
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
         });
 
-
-        const object = await res.json();
-
-        return object;
+        return res;
 
     } catch (error) {
         console.log(error);

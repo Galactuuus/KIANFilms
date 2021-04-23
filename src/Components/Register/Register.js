@@ -16,7 +16,7 @@ const Register = () => {
 
     useEffect(() => {
         focusEmail.current.focus();
-    }, []);
+    });
 
     const fetch = async (event) => {
 
@@ -33,10 +33,11 @@ const Register = () => {
 
                 const res = await fetchRegister(email, userName, inputPw, born)
 
-                console.log(res)
-
                 if (res.status === 201) {
                     setError(1)
+                } else {
+                    const errMsg =  await res.json();
+                    console.log(errMsg)
                 }
 
             } catch (e) {
@@ -44,7 +45,7 @@ const Register = () => {
                 setError(0)
             }
         } else {
-            setMsg("Passwords don't match");
+            setError(2);
         }
 
         switch (error) {
@@ -52,8 +53,11 @@ const Register = () => {
                 setMsg("Internal server error");
                 break;
             case 1:
-                setMsg("Welcome to KIAN, you're now beign redirected");
+                setMsg("Welcome to KIAN, you're now being redirected");
                 // props.history.push(/login);
+                break;
+            case 2:
+                setMsg("Passwords don't match");
                 break;
             default:
                 setMsg(null)
