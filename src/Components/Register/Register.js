@@ -4,19 +4,20 @@ import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import fetchRegister from '../../services/fetchRegister';
 import { withRouter } from 'react-router-dom'
+import Msg from '../Msg/Msg';
 
 
 const Register = () => {
 
     const [startDate, setStartDate] = useState(new Date());
     const [error, setError] = useState(null);
-    const [msg, setMsg] = useState(null);
 
     const focusEmail = React.createRef();
 
     useEffect(() => {
         focusEmail.current.focus();
     });
+
 
     const fetch = async (event) => {
 
@@ -28,7 +29,10 @@ const Register = () => {
         const inputPwConfirm = event.target[3].value;
         const born = startDate;
 
+        if (!email || !userName || !born || !inputPw || !inputPwConfirm) setError(5);
+
         if (inputPw === inputPwConfirm) {
+
             try {
 
                 const res = await fetchRegister(email, userName, inputPw, born)
@@ -36,8 +40,13 @@ const Register = () => {
                 if (res.status === 201) {
                     setError(1)
                 } else {
-                    const errMsg =  await res.json();
-                    console.log(errMsg)
+                    const error = await res.json()
+                    console.log(error)
+                    if (error.code === 3) {
+                        setError(error.code);
+                    } else if (error.code === 4) {
+                        setError(error.code);
+                    }
                 }
 
             } catch (e) {
@@ -47,22 +56,32 @@ const Register = () => {
         } else {
             setError(2);
         }
+    }
 
-        switch (error) {
-            case 0:
-                setMsg("Internal server error");
-                break;
-            case 1:
-                setMsg("Welcome to KIAN, you're now being redirected");
-                // props.history.push(/login);
-                break;
-            case 2:
-                setMsg("Passwords don't match");
-                break;
-            default:
-                setMsg(null)
-        }
+    let msg = null;
 
+    switch (error) {
+        case 0:
+            msg = <Msg>Internal server error</Msg>
+            break;
+        case 1:
+            msg = <Msg>Welcome to KIAN, you're now being redirected</Msg>
+            // props.history.push(/login);
+            break;
+        case 2:
+            msg = <Msg>Passwords don't match</Msg>
+            break;
+        case 3:
+            msg = <Msg>Email already exist</Msg>
+            break;
+        case 4:
+            msg = <Msg>User name already exist</Msg>
+            break;
+        case 5:
+            msg = <Msg>All fields are required</Msg>
+            break;
+        default:
+            msg = null
     }
 
     return (
@@ -113,7 +132,7 @@ const Register = () => {
                         dateFormat="MM/dd/yyyy" />
                     <button className="" type="submit">Submit</button>
                 </form>
-                {msg && <div>{msg}</div>}
+                {msg}
             </div>
         </>
     )
