@@ -1,12 +1,12 @@
-const fetchRegister = async (email, userName, password, age) => {
+const fetchRegister = async (email, userName, password, born) => {
 
     try {
 
-        const urlLogin = 'http://localhost:4000/user/signup;
+        const urlLogin = 'http://localhost:4000/user/signup';
 
         const res = await fetch(urlLogin, {
             method: 'POST',
-            headers: { 'email': email, 'userName':userName, 'password': password, 'age':age }
+            headers: { 'email': email, 'userName':userName, 'password': password, 'born':born }
         });
 
 
