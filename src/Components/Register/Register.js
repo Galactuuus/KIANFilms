@@ -3,8 +3,7 @@ import DatePicker from "react-datepicker";
 import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import fetchRegister from '../../services/fetchRegister';
-import { withRouter } from 'react-router-dom'
-import Msg from '../Msg/Msg';
+import { withRouter } from 'react-router-dom';
 
 
 const Register = () => {
@@ -40,8 +39,7 @@ const Register = () => {
                 if (res.status === 201) {
                     setError(1)
                 } else {
-                    const error = await res.json()
-                    console.log(error)
+                    const error = await res.json();
                     if (error.code === 3) {
                         setError(error.code);
                     } else if (error.code === 4) {
@@ -62,23 +60,23 @@ const Register = () => {
 
     switch (error) {
         case 0:
-            msg = <Msg>Internal server error</Msg>
+            msg = <div>Internal server error</div>
             break;
         case 1:
-            msg = <Msg>Welcome to KIAN, you're now being redirected</Msg>
+            msg = <div>Welcome to KIAN, you're now being redirected</div>
             // props.history.push(/login);
             break;
         case 2:
-            msg = <Msg>Passwords don't match</Msg>
+            msg = <div>Passwords don't match</div>
             break;
         case 3:
-            msg = <Msg>Email already exist</Msg>
+            msg = <div>Email already exist</div>
             break;
         case 4:
-            msg = <Msg>User name already exist</Msg>
+            msg = <div>User name already exist</div>
             break;
         case 5:
-            msg = <Msg>All fields are required</Msg>
+            msg = <div>All fields are required</div>
             break;
         default:
             msg = null
