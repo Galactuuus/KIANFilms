@@ -51,7 +51,7 @@ const Login = () => {
                 <form className="logForm" onSubmit={e => Validation(e)}>
                     <h1 className="logTitle">Identifícate</h1>
                     <div>
-                        <input className="email" name="email" type="email" placeholder="Introduce el email" required ref={focusEmail}/>
+                        <input className="mainInput" name="email" type="email" placeholder="Introduce el email" required ref={focusEmail}/>
                     </div>
                     {error === 1 && 
                         <div>
@@ -59,14 +59,14 @@ const Login = () => {
                         </div>
                     }
                     <div>
-                        <input className="password" name="password" type="password" placeholder="Introduce la contraseña" required />
+                        <input className="mainInput" name="password" type="password" placeholder="Introduce la contraseña" required />
                     </div>
                     {error === 2 &&
                         <div> 
                             <span className="errorLogForm">Contraseña incorrecta</span>
                         </div>
                     }
-                    <button className="loginBtn" name="submit" type="submit">Enviar</button>
+                    <button className="mainBtn" name="submit" type="submit">Enviar</button>
                 </form>
             </div>
         </>

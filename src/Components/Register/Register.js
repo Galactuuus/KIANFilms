@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import fetchRegister from '../../Services/fetchRegister';
 import { withRouter } from 'react-router-dom';
+import store from '../../Store/store'
 
 
 const Register = () => {
@@ -56,6 +57,15 @@ const Register = () => {
         }
     }
 
+    const backToLogin = (boolean) => {
+        store.dispatch(
+            {
+                type: 'BACK_TO_LOGIN',
+                payload: boolean
+            }
+        );
+    }
+
     let msg = null;
 
     switch (error) {
@@ -63,19 +73,9 @@ const Register = () => {
             msg = <div>Internal server error</div>
             break;
         case 1:
-
-            break;
-        case 2:
-            msg = <div>Passwords don't match</div>
-            break;
-        case 3:
-            msg = <div>Email already exist</div>
-            break;
-        case 4:
-            msg = <div>User name already exist</div>
-            break;
-        case 5:
-            msg = <div>All fields are required</div>
+            msg = <div>Welcome to KIAN, you're now being redirected</div>
+            // history.push('/');
+            backToLogin(false);
             break;
         default:
             msg = null
@@ -83,53 +83,62 @@ const Register = () => {
 
     return (
         <>
-            <h1>Registro</h1>
-            <div className="register">
+            <div className="registerContainer">
                 <form className="registerForm" onSubmit={(e) => fetch(e)}>
-                    <label htmlFor="email"></label>
-                    <input
-                        className="email"
-                        type="email"
-                        name="email"
-                        placeholder="example@example.com"
-                        required
-                        ref={focusEmail}
-                    ></input>
-                    <label htmlFor="userName"></label>
-                    <input
-                        className=""
-                        type="text"
-                        name="userName"
-                        placeholder="user"
-                        required
-                    ></input>
-                    <label htmlFor="password"></label>
-                    <input
-                        className="password"
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        required
-                    ></input>
-                    <label htmlFor="confirmPassword"></label>
-                    <input
-                        className=""
-                        type="password"
-                        name="password"
-                        placeholder="confirm password"
-                        required
-                    ></input>
-                    <label htmlFor="date"></label>
-                    <DatePicker selected={startDate}
-                        onChange={date => setStartDate(date)}
-                        peekNextMonth
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        dateFormat="MM/dd/yyyy" />
-                    <button className="" type="submit">Submit</button>
-                </form>
-                {msg}
+                    <h1 className="registerTitle">Registro</h1>
+                    {error === 0 && <div>Error Interno</div>}
+                    {error === 5 && <div>Todos los campos deben ser rellenados</div>}
+                    <div>
+                        <input
+                            className="mainInput"
+                            type="email"
+                            name="email"
+                            placeholder="example@example.com"
+                            required
+                            ref={focusEmail}
+                        ></input>
+                    </div>
+                    {error === 3 && <div>Este email ya está en uso</div>}
+                    <div>
+                        <input
+                            className="mainInput"
+                            type="text"
+                            name="userName"
+                            placeholder="user"
+                            required
+                        ></input>
+                    </div>
+                    {error === 4 && <div>Este usuario ya está en uso</div>}
+                    <div>
+                        <input
+                            className="mainInput"
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            required
+                        ></input>
+                    </div>
+                    <div>
+                        <input
+                            className="mainInput"
+                            type="password"
+                            name="password"
+                            placeholder="confirm password"
+                            required
+                        ></input>
+                    </div>
+                    {error === 2 && <div>Las contraseñas no coinciden</div>}
+                    <div>
+                        <DatePicker className="mainInput" selected={startDate}
+                            onChange={date => setStartDate(date)}
+                            peekNextMonth
+                            showMonthDropdown
+                            showYearDropdown
+                            dropdownMode="select"
+                            dateFormat="MM/dd/yyyy" />
+                    </div>
+                    <button className="mainBtn" type="submit">Registrarse</button>
+            </form>
             </div>
         </>
     )
