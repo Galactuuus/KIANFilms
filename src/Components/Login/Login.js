@@ -1,7 +1,7 @@
 import './Login.sass'
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
-import fetchLogin from '../../Services/fetchLogin.js';
+import fetchLogin from '../../services/fetchLogin.js';
 import cookies from 'js-cookies';
 import store from '../../Store/store';
 
