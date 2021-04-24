@@ -11,19 +11,32 @@ const Register = () => {
 
     const [startDate, setStartDate] = useState(new Date());
     const [error, setError] = useState(null);
-    const [pwColor, setPwColor] = useState(null);
+    const [pwColor, setPwColor] = useState('mainInput');
+    const [pwInput, setPwInput] = useState(null);
+    const [pwConfirmColor, setPwConfirmColor] = useState('mainInput');
 
     const focusEmail = React.createRef();
 
     useEffect(() => {
         focusEmail.current.focus();
-    });
+    }, []);
 
     const checkPw = (pw) => {
-        if (pw.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#<>$+@$!%*?&])[A-Za-z\d[#<>$+@$!%*?]{8,}$/gm)) {
+        if (pw.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#<>$+@$!%*?&])[A-Za-z\d[#<>$+@$!%*?&]{8,}$/gm)) {
             setPwColor('okPw');
+            setError(null);
+            setPwInput(pw);
         } else {
-            setPwColor('badPw');            
+            setPwColor('badPw');
+            setError(6)
+        }
+    }
+
+    const checkPwConfirm = (pw) => {
+        if (pwInput === pw) {
+            setPwConfirmColor('okPw');
+        } else {
+            setPwConfirmColor('badPw');
         }
     }
 
@@ -35,7 +48,7 @@ const Register = () => {
         const userName = event.target[1].value;
         const inputPw = event.target[2].value;
         const inputPwConfirm = event.target[3].value;
-        const born = startDate;        
+        const born = startDate;
 
         if (!email || !userName || !born || !inputPw || !inputPwConfirm) setError(5);
 
@@ -61,8 +74,6 @@ const Register = () => {
                 console.log(e)
                 setError(0)
             }
-        } else {
-            setError(2);
         }
     }
 
@@ -76,6 +87,7 @@ const Register = () => {
     }
 
     let msg = null;
+    const pwInstructions = "#<>$+@$!%*?&";
 
     switch (error) {
         case 0:
@@ -84,6 +96,11 @@ const Register = () => {
         case 1:
             msg = <div>Welcome to KIAN, you're now being redirected</div>
             backToLogin(false);
+            break;
+        case 6:
+            msg = <div>La contraseña debe incluir por lo menos una letra mayúscula
+                y minúscula, un número y uno de éstos caracteres especiales: {pwInstructions}
+            </div>
             break;
         default:
             msg = null
@@ -119,7 +136,7 @@ const Register = () => {
                     {error === 4 && <div>Este usuario ya está en uso</div>}
                     <div>
                         <input
-                            className="mainInput {pwColor}"
+                            className={pwColor}
                             type="password"
                             name="password"
                             placeholder="password"
@@ -129,11 +146,12 @@ const Register = () => {
                     </div>
                     <div>
                         <input
-                            className="mainInput"
+                            className={pwConfirmColor}
                             type="password"
                             name="password"
                             placeholder="confirm password"
                             required
+                            onInput={(e) => checkPwConfirm(e.target.value)}
                         ></input>
                     </div>
                     {error === 2 && <div>Las contraseñas no coinciden</div>}
@@ -146,8 +164,9 @@ const Register = () => {
                             dropdownMode="select"
                             dateFormat="MM/dd/yyyy" />
                     </div>
+                    <div className="errorMsg">{msg}</div>
                     <button className="mainBtn" type="submit">Registrarse</button>
-            </form>
+                </form>
             </div>
         </>
     )
