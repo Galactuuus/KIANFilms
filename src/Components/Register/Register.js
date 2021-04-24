@@ -2,7 +2,7 @@ import './Register.sass';
 import DatePicker from "react-datepicker";
 import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import fetchRegister from '../../services/fetchRegister';
+import fetchRegister from '../../Services/fetchRegister';
 import { withRouter } from 'react-router-dom';
 
 
@@ -89,7 +89,7 @@ const Register = () => {
                 <form className="registerForm" onSubmit={(e) => fetch(e)}>
                     <label htmlFor="email"></label>
                     <input
-                        className=""
+                        className="email"
                         type="email"
                         name="email"
                         placeholder="example@example.com"
@@ -106,7 +106,7 @@ const Register = () => {
                     ></input>
                     <label htmlFor="password"></label>
                     <input
-                        className=""
+                        className="password"
                         type="password"
                         name="password"
                         placeholder="password"

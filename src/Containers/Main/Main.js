@@ -1,5 +1,5 @@
 import './Main.sass';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from '../../Components/Login/Login.js'
 import Register from '../../Components/Register/Register';
 
@@ -13,7 +13,10 @@ const Main = () => {
                 <div className="logo"><img className="imgLogo" src=""></img></div>
                 {!entrance && <Login/>}
                 {entrance && <Register/>}
-                {!entrance && <button onClick={() => setEntrance(true)}>Regístrate</button>}
+                {!entrance && 
+                    <div className="registerBtn">
+                        <button onClick={() => setEntrance(true)}>Regístrate</button>
+                    </div>}
             </div>
         </>
     )

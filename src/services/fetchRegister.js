@@ -2,7 +2,7 @@ const fetchRegister = async (email, userName, password, born) => {
 
     try {
 
-        const urlLogin = 'http://localhost:4000/user/signup';
+        const urlSignUp = 'http://localhost:4000/user/signup';
 
         const body = {
             "email": email,
@@ -11,7 +11,7 @@ const fetchRegister = async (email, userName, password, born) => {
             "born": born
         }
 
-        const res = await fetch(urlLogin, {
+        let res = await fetch(urlSignUp, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
