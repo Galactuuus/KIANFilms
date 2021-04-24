@@ -11,6 +11,7 @@ const Register = () => {
 
     const [startDate, setStartDate] = useState(new Date());
     const [error, setError] = useState(null);
+    const [pwColor, setPwColor] = useState(null);
 
     const focusEmail = React.createRef();
 
@@ -18,6 +19,13 @@ const Register = () => {
         focusEmail.current.focus();
     });
 
+    const checkPw = (pw) => {
+        if (pw.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#<>$+@$!%*?&])[A-Za-z\d[#<>$+@$!%*?]{8,}$/gm)) {
+            setPwColor('okPw');
+        } else {
+            setPwColor('badPw');            
+        }
+    }
 
     const fetch = async (event) => {
 
@@ -27,9 +35,10 @@ const Register = () => {
         const userName = event.target[1].value;
         const inputPw = event.target[2].value;
         const inputPwConfirm = event.target[3].value;
-        const born = startDate;
+        const born = startDate;        
 
         if (!email || !userName || !born || !inputPw || !inputPwConfirm) setError(5);
+
 
         if (inputPw === inputPwConfirm) {
 
@@ -74,7 +83,6 @@ const Register = () => {
             break;
         case 1:
             msg = <div>Welcome to KIAN, you're now being redirected</div>
-            // history.push('/');
             backToLogin(false);
             break;
         case 2:
@@ -100,7 +108,7 @@ const Register = () => {
                 <form className="registerForm" onSubmit={(e) => fetch(e)}>
                     <label htmlFor="email"></label>
                     <input
-                        className="email"
+                        className=""
                         type="email"
                         name="email"
                         placeholder="example@example.com"
@@ -117,11 +125,12 @@ const Register = () => {
                     ></input>
                     <label htmlFor="password"></label>
                     <input
-                        className="password"
+                        className={pwColor}
                         type="password"
                         name="password"
                         placeholder="password"
                         required
+                        onInput={(e) => checkPw(e.target.value)}
                     ></input>
                     <label htmlFor="confirmPassword"></label>
                     <input
