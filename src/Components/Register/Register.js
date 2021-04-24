@@ -3,8 +3,9 @@ import DatePicker from "react-datepicker";
 import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
-import fetchRegister from '../../Services/fetchRegister';
+import fetchRegister from '../../services/fetchRegister';
 import { withRouter } from 'react-router-dom';
+import store from '../../Store/store'
 
 
 const Register = () => {
@@ -58,6 +59,15 @@ const Register = () => {
         }
     }
 
+    const backToLogin = (boolean) => {
+        store.dispatch(
+            {
+                type: 'BACK_TO_LOGIN',
+                payload: boolean
+            }
+        );
+    }
+
     let msg = null;
 
     switch (error) {
@@ -66,7 +76,8 @@ const Register = () => {
             break;
         case 1:
             msg = <div>Welcome to KIAN, you're now being redirected</div>
-            history.push('/');
+            // history.push('/');
+            backToLogin(false);
             break;
         case 2:
             msg = <div>Passwords don't match</div>
