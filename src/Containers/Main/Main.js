@@ -10,8 +10,7 @@ const Main = () => {
 
     useEffect(() => {
         store.subscribe(() => {
-            setEntrance(store.getState().entrance)
-            console.log(entrance)
+            setEntrance(store.getState().entrance);
         })
     }, []);
 

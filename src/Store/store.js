@@ -11,7 +11,7 @@ const reducer = (state, action) =>{
         case 'SET_LOG':
             return {
                 ...state,
-                isLogged: action.type
+                isLogged: action.payload
             }
         case 'BACK_TO_LOGIN':
             return {

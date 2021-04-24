@@ -1,7 +1,6 @@
 import './Register.sass';
 import DatePicker from "react-datepicker";
 import React, { useState, useEffect } from "react";
-import { useHistory } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 import fetchRegister from '../../services/fetchRegister';
 import { withRouter } from 'react-router-dom';
@@ -14,7 +13,6 @@ const Register = () => {
     const [error, setError] = useState(null);
 
     const focusEmail = React.createRef();
-    const history = useHistory();
 
     useEffect(() => {
         focusEmail.current.focus();

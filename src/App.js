@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Main from './Containers/Main/Main.js';
 import Home from './Containers/Home/Home.js'
 import Dashboard from './Containers/Dashboard/Dashboard.js'
