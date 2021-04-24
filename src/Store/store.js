@@ -1,18 +1,17 @@
 import { createStore } from 'redux'
 
-
-
 const initialState = {
-    isLogged: false
+    isLogged: false,
+    pelis: []
 }
 
 const reducer = (state, action) =>{
     switch(action.type){
         case 'SET_LOG':
-            return { isLogged: action.login } 
+            return { isLogged: action.type }
         default:
             return state 
     }
 }
-const store = createStore(reducer, initialState);
-export default store;
+
+export default createStore(reducer, initialState);

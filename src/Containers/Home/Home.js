@@ -12,13 +12,10 @@ const Home = () => {
     useEffect(() => {
         store.subscribe(() => {
             setLog(store.getState().isLogged)
+            console.log(1);
+            if(log === false) history.push('/');
         })
     },[])
-
-    useEffect(() => {
-        console.log(log);
-        if(log === false) history.push('/');
-    }, [log])
 
     return(
         <>

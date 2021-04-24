@@ -1,6 +1,7 @@
 import './Register.sass';
 import DatePicker from "react-datepicker";
 import React, { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 import fetchRegister from '../../Services/fetchRegister';
 import { withRouter } from 'react-router-dom';
@@ -12,6 +13,7 @@ const Register = () => {
     const [error, setError] = useState(null);
 
     const focusEmail = React.createRef();
+    const history = useHistory();
 
     useEffect(() => {
         focusEmail.current.focus();
@@ -64,7 +66,7 @@ const Register = () => {
             break;
         case 1:
             msg = <div>Welcome to KIAN, you're now being redirected</div>
-            // props.history.push(/login);
+            history.push('/');
             break;
         case 2:
             msg = <div>Passwords don't match</div>
