@@ -35,8 +35,10 @@ const Register = () => {
     const checkPwConfirm = (pw) => {
         if (pwInput === pw) {
             setPwConfirmColor('okPw');
+            setError(null);
         } else {
             setPwConfirmColor('badPw');
+            setError(2);
         }
     }
 
@@ -95,7 +97,7 @@ const Register = () => {
             break;
         case 1:
             msg = <div>Welcome to KIAN, you're now being redirected</div>
-            backToLogin(false);
+            backToLogin({ yesOrNo: false, msg: true });
             break;
         case 6:
             msg = <div>La contraseña debe incluir por lo menos una letra mayúscula

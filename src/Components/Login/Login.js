@@ -9,7 +9,7 @@ import store from '../../Store/store';
 const Login = () => {
 
     const [error, setError] = useState(0);
-    const [isLogged, setIsLogged ] = useState();
+    const [isLogged, setIsLogged ] = useState(); 
 
     const focusEmail = React.createRef();
     const history = useHistory();
@@ -17,7 +17,7 @@ const Login = () => {
     useEffect(() => {
         focusEmail.current.focus();
         store.subscribe(() => {
-            setIsLogged(store.getState().isLogged)
+            setIsLogged(store.getState().isLogged);
         })
     }, []);
 
@@ -48,7 +48,7 @@ const Login = () => {
     return (
         <>
             <div className="logContainer">
-                <form className="logForm" onSubmit={e => Validation(e)}>
+                <form className="logForm" onSubmit={e => Validation(e)}>                    
                     <h1 className="logTitle">Identifícate</h1>
                     <div>
                         <input className="mainInput" name="email" type="email" placeholder="Introduce el email" required ref={focusEmail}/>
@@ -74,9 +74,3 @@ const Login = () => {
 }
 
 export default Login;
-
-/*   si quieres ir tocando algo hazlo   */
-
-/* ahora aquí habrá que poner el dispatch y mandar la acción al reducer de que está logueado
-
-el usuario */

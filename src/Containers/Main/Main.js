@@ -7,10 +7,12 @@ import store from '../../Store/store'
 const Main = () => {
 
     const [entrance, setEntrance] = useState(false);
+    const [msg, setMsg] = useState(false);
 
     useEffect(() => {
         store.subscribe(() => {
             setEntrance(store.getState().entrance);
+            setMsg(store.getState().msg);
         })
     }, []);
 
@@ -18,6 +20,7 @@ const Main = () => {
         <>
             <div className="main">
                 <div className="logo"><img className="imgLogo" src=""></img></div>
+                {msg && <div>Gracias por registrarte, inicia sesión y comienza a disfrutar</div>}
                 {!entrance && <Login/>}
                 {entrance && <Register/>}
                 {!entrance && 

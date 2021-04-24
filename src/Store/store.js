@@ -3,7 +3,8 @@ import { createStore } from 'redux'
 const initialState = {
     isLogged: false,
     pelis: [],
-    entrance: false
+    entrance: false,
+    msg: false
 }
 
 const reducer = (state, action) =>{
@@ -16,7 +17,8 @@ const reducer = (state, action) =>{
         case 'BACK_TO_LOGIN':
             return {
                 ...state,
-                entrance: action.payload
+                entrance: action.payload.yesOrNo,
+                msg: action.payload.msg
             }    
         default:
             return state 
