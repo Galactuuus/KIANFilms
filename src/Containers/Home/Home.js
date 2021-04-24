@@ -12,7 +12,6 @@ const Home = () => {
     useEffect(() => {
         store.subscribe(() => {
             setLog(store.getState().isLogged)
-            console.log(1);
             if(log === false) history.push('/');
         })
     },[])
