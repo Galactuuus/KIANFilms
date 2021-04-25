@@ -3,6 +3,7 @@ import store from '../../Store/store.js';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../Components/header/Header'
+import Carrousel from '../../Components/carrousel/Carrousel';
 
 const Home = () => {
 
@@ -25,6 +26,7 @@ const Home = () => {
         <>
             <Header />
             <div className="home">HOME</div>
+            <Carrousel />
         </>
     )
 };
