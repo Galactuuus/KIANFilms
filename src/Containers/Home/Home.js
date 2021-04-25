@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../Components/header/Header'
 import SearchMovies from '../../Services/fetchSearchInput';
+import Carrousel from '../../Components/carrousel/Carrousel.js';
 
 const Home = () => {
 
@@ -25,6 +26,7 @@ const Home = () => {
         <>
             <Header />
             <div className="home">HOME</div>
+            <Carrousel />
         </>
     )
 };
