@@ -10,10 +10,7 @@ const initialState = {
 const reducer = (state, action) =>{
     switch(action.type){
         case 'SET_LOG':
-            return {
-                ...state,
-                isLogged: action.payload
-            }
+            return { ...state, isLogged: action.payload }
         case 'BACK_TO_LOGIN':
             return {
                 ...state,
@@ -25,4 +22,6 @@ const reducer = (state, action) =>{
     }
 }
 
-export default createStore(reducer, initialState);
+const store = createStore(reducer, initialState)
+
+export default store;

@@ -11,13 +11,17 @@ const Home = () => {
     const history = useHistory();
 
     useEffect(() => {
+        console.log(1);
         store.subscribe(() => {
-            setLog(store.getState().isLogged)
-            if (!log) history.push('/');
+            setLog(store.getState().isLogged);
         })
-    }, [])
+        console.log(log, 1);
+    },[])
 
-    return (
+
+    console.log(log, 2);
+
+    return(
         <>
             <Header />
             <div className="home">HOME</div>

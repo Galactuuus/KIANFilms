@@ -19,13 +19,16 @@ const Main = () => {
     return (
         <>
             <div className="main">
-                <div className="logo"><img className="imgLogo" src="" alt="logo"></img></div>
-                {msg && <div>Gracias por registrarte, inicia sesión y comienza a disfrutar</div>}
+                <div className="logo"><img className="imgLogo" src=""></img></div>
+                {msg && <div className="welcome">🥳  Gracias por registrarte, inicia sesión y comienza a disfrutar 🥳</div>}
                 {!entrance && <Login/>}
                 {entrance && <Register/>}
                 {!entrance && 
                     <div className="registerBtn">
-                        <button onClick={() => setEntrance(true)}>Regístrate</button>
+                        <button onClick={() => { 
+                            setEntrance(true);
+                            setMsg(false)}}>
+                            Regístrate</button>
                     </div>}
             </div>
         </>

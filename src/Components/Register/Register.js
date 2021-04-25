@@ -14,6 +14,8 @@ const Register = () => {
     const [pwColor, setPwColor] = useState('mainInput');
     const [pwInput, setPwInput] = useState(null);
     const [pwConfirmColor, setPwConfirmColor] = useState('mainInput');
+    const [emailColor, setEmailColor] = useState('mainInput');
+    const [usernameColor, setUsernameColor] = useState('mainInput');
 
     const focusEmail = React.createRef();
 
@@ -51,6 +53,8 @@ const Register = () => {
         const inputPw = event.target[2].value;
         const inputPwConfirm = event.target[3].value;
         const born = startDate;
+        setUsernameColor('okPw');
+        setEmailColor('okPw')
 
         if (!email || !userName || !born || !inputPw || !inputPwConfirm) setError(5);
 
@@ -67,8 +71,10 @@ const Register = () => {
                     const error = await res.json();
                     if (error.code === 3) {
                         setError(error.code);
+                        setEmailColor('badPw');
                     } else if (error.code === 4) {
                         setError(error.code);
+                        setUsernameColor('badPw');
                     }
                 }
 
@@ -89,7 +95,6 @@ const Register = () => {
     }
 
     let msg = null;
-    const pwInstructions = "#<>$+@$!%*?&";
 
     switch (error) {
         case 0:
@@ -100,9 +105,7 @@ const Register = () => {
             backToLogin({ yesOrNo: false, msg: true });
             break;
         case 6:
-            msg = <div>La contraseña debe incluir por lo menos una letra mayúscula
-                y minúscula, un número y uno de éstos caracteres especiales: {pwInstructions}
-            </div>
+            msg = <h6 className="badInput">Contraseña muy debil</h6>
             break;
         default:
             msg = null
@@ -117,7 +120,7 @@ const Register = () => {
                     {error === 5 && <div>Todos los campos deben ser rellenados</div>}
                     <div>
                         <input
-                            className="mainInput"
+                            className={emailColor}
                             type="email"
                             name="email"
                             placeholder="example@example.com"
@@ -125,17 +128,17 @@ const Register = () => {
                             ref={focusEmail}
                         ></input>
                     </div>
-                    {error === 3 && <div>Este email ya está en uso</div>}
+                    {error === 3 && <div className="badInput">Este email ya está en uso</div>}
                     <div>
                         <input
-                            className="mainInput"
+                            className={usernameColor}
                             type="text"
                             name="userName"
                             placeholder="user"
                             required
                         ></input>
                     </div>
-                    {error === 4 && <div>Este usuario ya está en uso</div>}
+                    {error === 4 && <div className="badInput">Este usuario ya está en uso</div>}
                     <div>
                         <input
                             className={pwColor}
@@ -146,6 +149,7 @@ const Register = () => {
                             onInput={(e) => checkPw(e.target.value)}
                         ></input>
                     </div>
+                    {msg}
                     <div>
                         <input
                             className={pwConfirmColor}
@@ -156,7 +160,7 @@ const Register = () => {
                             onInput={(e) => checkPwConfirm(e.target.value)}
                         ></input>
                     </div>
-                    {error === 2 && <div>Las contraseñas no coinciden</div>}
+                    {error === 2 && <div className="badInput">Las contraseñas no coinciden</div>}
                     <div>
                         <DatePicker className="mainInput" selected={startDate}
                             onChange={date => setStartDate(date)}
@@ -166,7 +170,6 @@ const Register = () => {
                             dropdownMode="select"
                             dateFormat="MM/dd/yyyy" />
                     </div>
-                    <div className="errorMsg">{msg}</div>
                     <button className="mainBtn" type="submit">Registrarse</button>
                 </form>
             </div>
