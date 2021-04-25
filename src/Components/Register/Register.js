@@ -105,7 +105,7 @@ const Register = () => {
             backToLogin({ yesOrNo: false, msg: true });
             break;
         case 6:
-            msg = <h6 className="weakPwd">Contraseña muy debil</h6>
+            msg = <h6 className="badInput">Contraseña muy debil</h6>
             break;
         default:
             msg = null
@@ -128,7 +128,7 @@ const Register = () => {
                             ref={focusEmail}
                         ></input>
                     </div>
-                    {error === 3 && <div>Este email ya está en uso</div>}
+                    {error === 3 && <div className="badInput">Este email ya está en uso</div>}
                     <div>
                         <input
                             className={usernameColor}
@@ -138,7 +138,7 @@ const Register = () => {
                             required
                         ></input>
                     </div>
-                    {error === 4 && <div>Este usuario ya está en uso</div>}
+                    {error === 4 && <div className="badInput">Este usuario ya está en uso</div>}
                     <div>
                         <input
                             className={pwColor}
@@ -160,7 +160,7 @@ const Register = () => {
                             onInput={(e) => checkPwConfirm(e.target.value)}
                         ></input>
                     </div>
-                    {error === 2 && <div>Las contraseñas no coinciden</div>}
+                    {error === 2 && <div className="badInput">Las contraseñas no coinciden</div>}
                     <div>
                         <DatePicker className="mainInput" selected={startDate}
                             onChange={date => setStartDate(date)}

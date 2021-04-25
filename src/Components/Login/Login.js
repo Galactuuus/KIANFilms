@@ -9,7 +9,7 @@ import store from '../../Store/store';
 const Login = () => {
 
     const [error, setError] = useState(0);
-    const [isLogged, setIsLogged ] = useState(); 
+    const [isLogged, setIsLogged ] = useState(false); 
     const [pwColor, setPwColor] = useState('mainInput');
     const [emailColor, setEmailColor] = useState('mainInput');
 
