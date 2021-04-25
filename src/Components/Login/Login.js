@@ -10,6 +10,8 @@ const Login = () => {
 
     const [error, setError] = useState(0);
     const [isLogged, setIsLogged ] = useState(); 
+    const [pwColor, setPwColor] = useState('mainInput');
+    const [emailColor, setEmailColor] = useState('mainInput');
 
     const focusEmail = React.createRef();
     const history = useHistory();
@@ -25,6 +27,8 @@ const Login = () => {
         e.preventDefault();
 
         setError(0)
+        setPwColor('mainInput');
+        setEmailColor('mainInput')
         const email = e.target[0].value;
         const password = e.target[1].value;
 
@@ -33,12 +37,18 @@ const Login = () => {
             cookies.setItem('auth', response.token);
             store.dispatch({
                 type: 'SET_LOG',
-                login: true
+                payload: true
             });
             history.push('/home');
         }else{
-            if(response.message === 'The email is incorrect') setError(1);
-            else if(response.message === 'The password is incorrect') setError(2);
+            if(response.message === 'The email is incorrect') {
+                setError(1);
+                setEmailColor('badPw');
+            }
+            else if(response.message === 'The password is incorrect') {
+                setError(2)
+                setPwColor('badPw')
+            }
         }
 
     }
@@ -51,7 +61,7 @@ const Login = () => {
                 <form className="logForm" onSubmit={e => Validation(e)}>                    
                     <h1 className="logTitle">Identifícate</h1>
                     <div>
-                        <input className="mainInput" name="email" type="email" placeholder="Introduce el email" required ref={focusEmail}/>
+                        <input className={emailColor} name="email" type="email" placeholder="Introduce el email" required ref={focusEmail}/>
                     </div>
                     {error === 1 && 
                         <div>
@@ -59,7 +69,7 @@ const Login = () => {
                         </div>
                     }
                     <div>
-                        <input className="mainInput" name="password" type="password" placeholder="Introduce la contraseña" required />
+                        <input className={pwColor} name="password" type="password" placeholder="Introduce la contraseña" required />
                     </div>
                     {error === 2 &&
                         <div> 
