@@ -5,7 +5,7 @@ const Header = () => {
 
     return (
         <div className="header">
-            <div className="headerLogo">Logo</div>
+            <div className="headerLogo">KIANFILMS</div>
             <div className="actionPanel">
                 <input id="toggle" type="checkbox"></input>
                 <label id="searchBarLabel" htmlFor="toggle"><i className="fas fa-search"></i></label>

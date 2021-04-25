@@ -1,5 +1,6 @@
 import './SearchInput.sass';
 import React, { useEffect } from 'react';
+import SearchMovies from '../../Services/fetchSearchInput.js'
 
 const SearchInput = () => {
 
@@ -17,6 +18,7 @@ const SearchInput = () => {
                 name="search"
                 placeholder="Buscar película"
                 ref={focusInput}
+                onChange={e => SearchMovies(e.target.value)}
             ></input>
         </div>
     )

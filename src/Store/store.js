@@ -4,7 +4,8 @@ const initialState = {
     isLogged: false,
     pelis: [],
     entrance: false,
-    msg: false
+    msg: false,
+    searching: false
 }
 
 const reducer = (state, action) =>{

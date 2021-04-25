@@ -3,6 +3,7 @@ import store from '../../Store/store.js';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../Components/header/Header'
+import SearchMovies from '../../Services/fetchSearchInput';
 
 const Home = () => {
 
@@ -19,7 +20,6 @@ const Home = () => {
     },[])
 
 
-    console.log(log, 2);
 
     return(
         <>
