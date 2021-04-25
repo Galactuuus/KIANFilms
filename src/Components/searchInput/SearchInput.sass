@@ -1,0 +1,40 @@
+.searchBar
+    display: flex
+    flex-direction: row
+    flex-flow: row wrap
+    justify-content: center
+    height: 2.5em
+    width: 11em
+
+.searchInput
+    flex-grow: 3
+    background-color: #181a1b
+    color: white
+    border: none
+    width: 100%
+
+.searchInput:focus
+    outline: none
+
+#toggle
+    display: none
+    visibility: hidden
+
+.searchBarLabel
+    transition: 0.5s
+
+#expand
+    width: 0
+    overflow: hidden
+    transition: width 0.5s     
+
+#toggle:checked ~ #expand
+    width: 11em
+    border: 0.1em solid #05cc47
+    margin-right: 1.1em
+    padding-left: 1em
+    
+
+@media (min-width: 425px)
+    .searchBar
+        width: 18em

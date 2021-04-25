@@ -1,4 +1,4 @@
-import './Footer.sass'
+import './Footer.sass';
 
 const Footer = () => {
     return (

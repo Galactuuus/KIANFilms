@@ -1,7 +1,8 @@
 import './Home.sass';
 import store from '../../Store/store.js';
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import Header from '../../Components/header/Header'
 
 const Home = () => {
 
@@ -12,13 +13,14 @@ const Home = () => {
     useEffect(() => {
         store.subscribe(() => {
             setLog(store.getState().isLogged)
-            if(log === false) history.push('/');
+            if (!log) history.push('/');
         })
-    },[])
+    }, [])
 
-    return(
+    return (
         <>
-            <div>HOME</div>
+            <Header />
+            <div className="home">HOME</div>
         </>
     )
 };
