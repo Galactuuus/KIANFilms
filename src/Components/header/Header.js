@@ -11,7 +11,7 @@ const Header = () => {
                 <input id="toggle" type="checkbox"></input>
                 <label id="searchBarLabel" htmlFor="toggle"><i className="fas fa-search"></i></label>
                 <SearchInput />
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/dashboard"><i className="fas fa-user-circle fa-2x"></i></Link>
             </div>
         </div>
     )
