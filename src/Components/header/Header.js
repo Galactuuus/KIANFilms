@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SearchInput from "../searchInput/SearchInput";
 import './Header.sass';
 
@@ -10,7 +11,7 @@ const Header = () => {
                 <input id="toggle" type="checkbox"></input>
                 <label id="searchBarLabel" htmlFor="toggle"><i className="fas fa-search"></i></label>
                 <SearchInput />
-                <div>Dashboard</div>
+                <Link to="/dashboard">Dashboard</Link>
             </div>
         </div>
     )
