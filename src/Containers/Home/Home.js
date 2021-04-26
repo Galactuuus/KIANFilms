@@ -20,8 +20,6 @@ const Home = () => {
         console.log(log, 1);
     },[])
 
-
-
     return(
         <>
             <Header />
