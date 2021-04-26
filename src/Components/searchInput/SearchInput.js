@@ -1,6 +1,9 @@
 import './SearchInput.sass';
 import React, { useEffect } from 'react';
-import SearchMovies from '../../Services/fetchSearchInput.js'
+import fetchByTitle from '../../Services/fetchByTitle';
+import fetchByGenre from '../../Services/fetchByGenre';
+import fetchByPerformer from '../../Services/fetchByPerformer';
+import fetchByDirector from '../../Services/fetchByDirector';
 
 const SearchInput = () => {
 
@@ -10,6 +13,19 @@ const SearchInput = () => {
 
     const focusInput = React.createRef();
 
+    const SearchMovies = async (e) => {
+        let dataByTitle = await fetchByTitle(e);
+        let dataByGenre = await fetchByGenre(e);
+        let dataByPerformer = await fetchByPerformer(e);
+        let dataByDirector = await fetchByDirector(e);
+
+        console.log(dataByTitle);
+        console.log(dataByGenre);
+        console.log(dataByPerformer);
+        console.log(dataByDirector);
+        
+    }
+
     return (
         <div id="expand" className="searchBar">
             <input
@@ -18,7 +34,7 @@ const SearchInput = () => {
                 name="search"
                 placeholder="Buscar película"
                 ref={focusInput}
-                onChange={e => SearchMovies(e.target.value)}
+                onChange={e => SearchMovies(e.target.value) }
             ></input>
         </div>
     )
