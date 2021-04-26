@@ -14,6 +14,7 @@ const Dashboard = () => {
     const [pages, setPages] = useState(null);
     const [error, setError] = useState(null);
     const [date, setDate] = useState(null);
+    const [msg, setMsg] = useState(null);
 
     const history = useHistory();
 
@@ -62,9 +63,8 @@ const Dashboard = () => {
         }
     }
 
-    let msg = null;
-    if (error === 0) msg = <h3>Error interno</h3>
-    if (error === 1) msg = <h3>No hay ordenes</h3>
+    if (error === 0) setMsg(<h3>Error interno</h3>)
+    if (error === 1) setMsg(<h3>No hay ordenes</h3>)
 
 
     return (
@@ -101,7 +101,7 @@ const Dashboard = () => {
                         poster={element.movie.poster}
                     />)}
 
-                    {msg && { msg }}
+                    {msg}
                     <div className="userOrders"></div>
                 </div>
             </div>
