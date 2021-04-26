@@ -94,9 +94,9 @@ const Dashboard = () => {
                             new Date(element.date).getFullYear()
                         }
                         returnDate={
-                            new Date(element.date).getDate() + '-' +
-                            new Date(element.date).getMonth() + 1 + '-' +
-                            new Date(element.date).getFullYear()
+                            new Date(element.returnDate).getDate() + '-' +
+                            new Date(element.returnDate).getMonth() + 1 + '-' +
+                            new Date(element.returnDate).getFullYear()
                         }
                         poster={element.movie.poster}
                     />)}
