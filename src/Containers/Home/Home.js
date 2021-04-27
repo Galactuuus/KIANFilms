@@ -15,8 +15,6 @@ const Home = () => {
         if(isLogged === false) history.push('/');
     },[])
 
-
-
     return(
         <>
             <Header />
