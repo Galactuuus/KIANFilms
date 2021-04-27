@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import fetchRegister from '../../Services/fetchRegister';
 import { withRouter } from 'react-router-dom';
-import store from '../../Store/store'
+import backToLogin from '../../Store/actions/backToLogin.js'
 
 
 const Register = () => {
@@ -83,15 +83,6 @@ const Register = () => {
                 setError(0)
             }
         }
-    }
-
-    const backToLogin = (boolean) => {
-        store.dispatch(
-            {
-                type: 'BACK_TO_LOGIN',
-                payload: boolean
-            }
-        );
     }
 
     let msg = null;

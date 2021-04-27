@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import fetchLogin from '../../Services/fetchLogin.js';
 import cookies from 'js-cookies';
 import store from '../../Store/store';
+import setLog from '../../Store/actions/setLog';
 
 
 const Login = () => {
@@ -35,10 +36,7 @@ const Login = () => {
         let response = await fetchLogin(email, password);
         if(response.token){
             cookies.setItem('auth', response.token);
-            store.dispatch({
-                type: 'SET_LOG',
-                payload: true
-            });
+            setLog(true);
             history.push('/home');
         }else{
             if(response.message === 'The email is incorrect') {

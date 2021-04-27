@@ -1,0 +1,120 @@
+.orderCard
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: flex-start
+    width: 100%
+    border: 0.1em solid #4dc47d
+    background-color: #181a1b
+    border-radius: 0.3em
+    padding-left: 0.5em
+    padding-bottom: 0.5em
+    margin-bottom: 0.5em
+    color: white
+    box-shadow: 0.2em 0.2em #4dc47d
+
+.orderInfo
+    display: flex
+    flex-direction: column
+    justify-content: center
+    width: auto
+    font-size: small
+    height: 100%
+
+.movieOrderCard
+    display: flex
+    flex-direction: column
+    justify-content: center
+    height: 6em
+    width: 10.67em
+
+.DashboardCardPoster
+    max-height: 100%
+    max-width: 100%
+    border-radius: 0.3em
+
+.posterSection
+    display: flex
+    flex-direction: row
+    justify-content: flex-end
+    width: 100%
+    margin-top: -3em
+
+@media (min-width: 425px)
+
+    .posterSection
+        width: auto
+        justify-content: flex-end
+        margin-left: 5em
+        margin-top: -3em
+
+    .movieOrderCard
+        height: 9em
+        width: 16em
+    
+    .DashboardCardPoster
+        margin-right: 0.5em
+
+@media (min-width: 426px)
+    
+    .orderCard
+        flex-direction: row
+        height: 10em
+        padding-bottom: 0em
+
+    .posterSection
+        width: auto
+        justify-content: flex-end
+        margin-left: 0em
+        margin-top: 0.5em
+
+    .orderInfo
+        font-size: large
+        padding-left: 1em
+
+    .movieOrderCard
+        height: 9em
+        width: 16em
+    
+    .DashboardCardPoster
+        margin-right: 0.5em
+
+@media (min-width: 768px)
+
+    .orderCard
+        flex-direction: row
+        height: 10em
+        padding-bottom: 0em
+
+    .posterSection
+        width: auto
+        justify-content: flex-end
+        margin-left: 0em
+        margin-top: 0.5em
+
+    .orderInfo
+        font-size: large
+        padding-left: 1em
+
+    .movieOrderCard
+        height: 9em
+        width: 16em
+    
+    .DashboardCardPoster
+        margin-right: 0.5em
+
+@media (min-width: 1440px)
+
+    .orderCard
+        height: 14.5em
+
+    .orderInfo
+        font-size: large
+        padding-left: 1em
+    
+    .movieOrderCard
+        height: 13.5em
+        width: 24em
+
+    .posterSection
+        width: auto

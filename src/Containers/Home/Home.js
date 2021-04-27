@@ -3,6 +3,7 @@ import store from '../../Store/store.js';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../Components/header/Header'
+import Carrousel from '../../Components/carrousel/Carrousel.js';
 
 const Home = () => {
 
@@ -11,20 +12,14 @@ const Home = () => {
     const history = useHistory();
 
     useEffect(() => {
-        console.log(1);
-        store.subscribe(() => {
-            setLog(store.getState().isLogged);
-        })
-        console.log(log, 1);
+        if( store.getState().isLogged === false ) history.push('/');
     },[])
-
-
-    console.log(log, 2);
 
     return(
         <>
             <Header />
             <div className="home">HOME</div>
+            <Carrousel />
         </>
     )
 };
