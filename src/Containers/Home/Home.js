@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../../Components/header/Header'
 import Carrousel from '../../Components/carrousel/Carrousel.js';
 import { useSelector } from 'react-redux';
+import cookies from 'js-cookies';
 
 
 const Home = () => {
@@ -12,7 +13,7 @@ const Home = () => {
     const isLogged = useSelector((state) => state.isLogged);
 
     useEffect(() => {
-        if(isLogged === false) history.push('/');
+        if(isLogged === false && !cookies.getItem('auth')) history.push('/');
     },[])
 
     return(
