@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import fetchRegister from '../../Services/fetchRegister';
 import { withRouter } from 'react-router-dom';
-import backToLogin from '../../Store/actions/backToLogin.js'
+import backToLogin from '../../Store/actions/actionBackToLogin.js';
+import { useDispatch } from 'react-redux';
 
 
 const Register = () => {
@@ -18,6 +19,7 @@ const Register = () => {
     const [usernameColor, setUsernameColor] = useState('mainInput');
 
     const focusEmail = React.createRef();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         focusEmail.current.focus();
@@ -93,7 +95,7 @@ const Register = () => {
             break;
         case 1:
             msg = <div>Welcome to KIAN, you're now being redirected</div>
-            backToLogin({ yesOrNo: false, msg: true });
+            dispatch(backToLogin({ yesOrNo: false, msg: true }));
             break;
         case 6:
             msg = <h6 className="badInput">Contraseña muy debil</h6>

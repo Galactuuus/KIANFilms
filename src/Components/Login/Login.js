@@ -3,25 +3,23 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import fetchLogin from '../../Services/fetchLogin.js';
 import cookies from 'js-cookies';
-import store from '../../Store/store';
-import setLog from '../../Store/actions/setLog';
+import setLog from '../../Store/actions/actionSetLog';
+import { useDispatch } from 'react-redux';
 
 
 const Login = () => {
 
     const [error, setError] = useState(0);
-    const [isLogged, setIsLogged ] = useState(false); 
     const [pwColor, setPwColor] = useState('mainInput');
     const [emailColor, setEmailColor] = useState('mainInput');
 
+
     const focusEmail = React.createRef();
     const history = useHistory();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         focusEmail.current.focus();
-        store.subscribe(() => {
-            setIsLogged(store.getState().isLogged);
-        })
     }, []);
 
     const Validation = async (e) => {
@@ -36,7 +34,7 @@ const Login = () => {
         let response = await fetchLogin(email, password);
         if(response.token){
             cookies.setItem('auth', response.token);
-            setLog(true);
+            dispatch(setLog(true));
             history.push('/home');
         }else{
             if(response.message === 'The email is incorrect') {

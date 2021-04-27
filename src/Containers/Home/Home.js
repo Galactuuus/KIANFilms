@@ -1,18 +1,18 @@
 import './Home.sass';
-import store from '../../Store/store.js';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../Components/header/Header'
 import Carrousel from '../../Components/carrousel/Carrousel.js';
+import { useSelector } from 'react-redux';
+
 
 const Home = () => {
 
-    const [log, setLog] = useState(false);
-
     const history = useHistory();
+    const isLogged = useSelector((state) => state.isLogged);
 
     useEffect(() => {
-        if( store.getState().isLogged === false ) history.push('/');
+        if(isLogged === false) history.push('/');
     },[])
 
 
