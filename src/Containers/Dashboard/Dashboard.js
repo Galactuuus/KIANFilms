@@ -1,7 +1,6 @@
 import './Dashboard.sass';
 import { useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import store from '../../Store/store.js';
 import fetchUserData from '../../Services/fetchUserData';
 import fetchUserOrders from '../../Services/fetchUserOrders';
 import DashboardHeader from '../../Components/dashboardHeader/DashboardHeader';
@@ -15,7 +14,9 @@ const Dashboard = () => {
     const [pages, setPages] = useState(null);
     const [error, setError] = useState(null);
     const [date, setDate] = useState(null);
+    const [current, setCurrent] = useState(1);
     const [msg, setMsg] = useState(null);
+    const [results, setResults] = useState({ from: 0, to: 10});
 
     const history = useHistory();
 
@@ -24,6 +25,10 @@ const Dashboard = () => {
         getUser();
         getOrders(0, 10);
     }, []);
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [results])
 
     const getUser = async () => {
 
@@ -56,7 +61,10 @@ const Dashboard = () => {
             const { orders } = userOrders
             const { pages } = userOrders
 
-            if (userOrders) setOrderList(orders);
+            if (userOrders) {
+                setOrderList(orders);
+                setPages(pages);
+            }
             if (!userOrders) setError(1);
 
         } catch (e) {
@@ -69,7 +77,7 @@ const Dashboard = () => {
     if (error === 1) setMsg(<h3>No hay ordenes</h3>)
 
     const getDate = (element) => {
-        const date = new Date (element);
+        const date = new Date(element);
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const year = date.getFullYear();
@@ -78,9 +86,36 @@ const Dashboard = () => {
         return dateFormatted
     }
 
-    const signOut = () => {
+    const signOut = (e) => {
+        e.preventDefault();
         cookies.removeItem('auth');
         history.push('/');
+    }
+
+    const nextPage = (e) => {
+        e.preventDefault();
+        if (current < pages) {
+            setResults({
+                from: results.from + 10,
+                to: results.to + 10
+            });
+            getOrders(results.from + 10, results.to + 10);
+            setCurrent(current + 1);
+        }
+
+    }
+
+    const prevPage = (e) => {
+        e.preventDefault();
+        if (current > 1) {
+            setResults({
+                from: results.from - 10,
+                to: results.to - 10
+            });
+            getOrders(results.from - 10, results.to - 10);
+            setCurrent(current - 1);
+        }
+
     }
 
 
@@ -101,7 +136,7 @@ const Dashboard = () => {
                             {user && <div>{user.userName}</div>}
                             {user && <div>{user.email}</div>}
                             {user && <div>{date}</div>}
-                            <div className="signOut" /*onClick={signOut()}*/>Sign out</div>
+                            <div className="signOut" onClick={(e) => signOut(e)}>Sign out</div>
                         </div>
                     </div>
                     <h4>Historial de pedidos</h4>
@@ -114,7 +149,11 @@ const Dashboard = () => {
                         />)}
 
                     {msg}
-                    <div className="userOrders"></div>
+                    <div className="pagination">
+                        <i className="fas fa-angle-left" onClick={(e) => prevPage(e)}></i>
+                        <div>page {current} of {pages}</div>
+                        <i className="fas fa-angle-right" onClick={(e) => nextPage(e)}></i>
+                    </div>
                 </div>
             </div>
         </>

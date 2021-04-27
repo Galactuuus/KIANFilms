@@ -10,8 +10,10 @@ const OrderCard = (props) => {
                 <div>Hasta</div>
                 <div>{props.returnDate}</div>
             </div>
-            <div className="movieOrderCard">
-                <img className="DashboardCardPoster" src={process.env.PUBLIC_URL + "/img/" + props.poster}></img>
+            <div className="posterSection">
+                <div className="movieOrderCard">
+                    <img className="DashboardCardPoster" src={process.env.PUBLIC_URL + "/img/" + props.poster}></img>
+                </div>
             </div>
         </div>
     )
