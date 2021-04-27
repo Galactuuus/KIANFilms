@@ -11,10 +11,11 @@
     flex-direction: column
     justify-content: flex-start
     align-items: center
-    height: 80vh
+    min-height: 80vh
     width: 80vw
     background-color: rgba( 255, 255, 255, 0.80 )
-    margin-top: 2.7em
+    margin-top: 3.7em
+    margin-bottom: 2.7em
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
     backdrop-filter: blur( 0.0px )
     -webkit-backdrop-filter: blur( 0.0px )
@@ -22,7 +23,7 @@
     border: 1px solid rgba( 255, 255, 255, 0.18 )
     padding: 1em
 
-.userInfo 
+.userInfo
     display: flex
     flex-direction: row
     width: 100%
@@ -30,17 +31,21 @@
 .iconsColumn
     display: flex
     flex-direction: column
-    justify-content: center
+    justify-content: space-evenly
     align-items: center
     width: 10%
 
 .infoColumn
     display: flex
     flex-direction: column
-    justify-content: flex-start
+    justify-content: space-evenly
     padding-left: 1em
     width: 90%
 
 .dashboardTitle
     display: flex
     flex-direction: row
+
+.signOut
+    text-decoration: underline
+    cursor: pointer

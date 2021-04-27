@@ -6,7 +6,7 @@ const dashboardHeader = () => {
         <div className="header">
             <div className="headerLogo">KIANFILMS</div>
             <div className="actionPanel">
-                <Link to="/home"><i class="fas fa-film fa-2x"></i></Link>
+                <Link to="/home"><i className="fas fa-film fa-2x"></i></Link>
             </div>
         </div>
     )
