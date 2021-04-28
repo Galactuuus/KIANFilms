@@ -15,7 +15,6 @@ const Dashboard = () => {
     const [error, setError] = useState(null);
     const [date, setDate] = useState(null);
     const [current, setCurrent] = useState(1);
-    const [msg, setMsg] = useState(null);
     const [results, setResults] = useState({ from: 0, to: 10});
 
     const history = useHistory();
@@ -61,11 +60,12 @@ const Dashboard = () => {
             const { orders } = userOrders
             const { pages } = userOrders
 
-            if (userOrders) {
+            if (userOrders.orders.length >= 1) {
                 setOrderList(orders);
                 setPages(pages);
+            } else {
+                setError(1);
             }
-            if (!userOrders) setError(1);
 
         } catch (e) {
             console.log(e);
@@ -73,8 +73,10 @@ const Dashboard = () => {
         }
     }
 
-    if (error === 0) setMsg(<h3>Error interno</h3>)
-    if (error === 1) setMsg(<h3>No hay ordenes</h3>)
+    let msg;
+
+    if (error === 0) msg = <h3>Error interno</h3>
+    if (error === 1) msg = <h3>No hay ordenes</h3>
 
     const getDate = (element) => {
         const date = new Date(element);
@@ -149,11 +151,12 @@ const Dashboard = () => {
                         />)}
 
                     {msg}
-                    <div className="pagination">
+                    
+                    {!msg && <div className="pagination">
                         <i className="fas fa-angle-left" onClick={(e) => prevPage(e)}></i>
                         <div>page {current} of {pages}</div>
                         <i className="fas fa-angle-right" onClick={(e) => nextPage(e)}></i>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </>
