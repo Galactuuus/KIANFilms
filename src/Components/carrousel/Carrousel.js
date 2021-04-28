@@ -6,13 +6,13 @@ const Carrousel = () => {
     return (
         <div className="carrousel">
             <div className="chevron chLeft">
-                <i class="fas fa-chevron-left"></i>
+                <i className="fas fa-chevron-left"></i>
             </div>
             <div className="cardContainer">
-                <Card poster={"lord-of-the-rings-poster.jpg"}/>
+                <Card poster={"interstellar.jpg"}/>
             </div>
             <div className="chevron chRight">
-                <i class="fas fa-chevron-right"></i>
+                <i className="fas fa-chevron-right"></i>
             </div>
         </div>
 
