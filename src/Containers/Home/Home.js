@@ -14,32 +14,30 @@ const Home = () => {
     const MovieSearched = useSelector((state) => state.movies);
 
     useEffect(() => {
-        if(isLogged === false && !cookies.getItem('auth')) history.push('/');
-    },[])
+        if (isLogged === false && !cookies.getItem('auth')) history.push('/');
+    }, [])
 
-    return(
+    return (
         <>
             <Header />
-            <div  className="homeBody">
-                {!searching && 
-                <>
-                    <div className="home">HOME</div>
-                    <Carrousel />
-                </>}
-                {searching && 
+            <div className="homeBody">
+                {!searching &&
+                    <>
+                        <div className="home">HOME</div>
+                        <Carrousel />
+                    </>}
+                {searching &&
                     <div className="searchedMovies">
                         {MovieSearched.map(movie => {
-                            if(!movie){
+                            if (!movie) {
                                 return (
                                     <div className="searchedMovies">
                                         <div className="movieContainer">No se han encontrado peliculas!</div>
                                         <div className="movieContainer">Sugerencias:
-                                            <ul>
-                                                <li>Busca por género: Accion, deporte, drama, comedia.. etc</li>
-                                                <li>Busca por reparto de Actores</li>
-                                                <li>Busca por titulo de pelicula</li>
-                                                <li>Busca por director</li>
-                                            </ul>
+                                            <li>Busca por género: Accion, deporte, drama, comedia.. etc</li>
+                                            <li>Busca por reparto de Actores</li>
+                                            <li>Busca por titulo de pelicula</li>
+                                            <li>Busca por director</li>
                                         </div>
                                     </div>
                                 )

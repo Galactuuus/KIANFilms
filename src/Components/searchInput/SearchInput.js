@@ -19,7 +19,6 @@ const SearchInput = () => {
         if(e !== "" ){
             if(searching === false) dispatch(searchingTrue(true));
             let dataByParam = await fetchByParam(e);
-            console.log(dataByParam, "Datos Json");
             if (!dataByParam ) {
                 dispatch(removeMovies());
             };
