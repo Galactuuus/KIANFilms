@@ -18,6 +18,7 @@ const fetchByParam = async (title) => {
         return data;
     }else{
         console.log(response.statusText);
+        return false;
     }
 
 }

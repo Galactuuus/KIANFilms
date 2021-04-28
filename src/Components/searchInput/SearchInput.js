@@ -19,8 +19,10 @@ const SearchInput = () => {
         if(e !== "" ){
             if(searching === false) dispatch(searchingTrue(true));
             let dataByParam = await fetchByParam(e);
-
-            if (!dataByParam ) return console.log('No se ha encontrado ninguna Pelicula');
+            console.log(dataByParam, "Datos Json");
+            if (!dataByParam ) {
+                dispatch(removeMovies());
+            };
             
             dispatch(removeMovies());
             dispatch(addMovies(dataByParam));

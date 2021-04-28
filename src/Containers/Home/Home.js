@@ -5,8 +5,6 @@ import Header from '../../Components/header/Header'
 import Carrousel from '../../Components/carrousel/Carrousel.js';
 import { useSelector } from 'react-redux';
 import cookies from 'js-cookies';
-import { searchingTrue } from '../../Store/actions/actionSearching';
-
 
 const Home = () => {
 
@@ -22,16 +20,35 @@ const Home = () => {
     return(
         <>
             <Header />
-            {!searching && 
-            <>
-                <div className="home">HOME</div>
-                <Carrousel />
-            </>}
-            {searching && MovieSearched.map(movie => {
-                return (
-                    <div>{movie.title}</div>
-                )
-            })}
+            <div  className="homeBody">
+                {!searching && 
+                <>
+                    <div className="home">HOME</div>
+                    <Carrousel />
+                </>}
+                {searching && 
+                    <div className="searchedMovies">
+                        {MovieSearched.map(movie => {
+                            if(!movie){
+                                return (
+                                    <div className="searchedMovies">
+                                        <div className="movieContainer">No se han encontrado peliculas!</div>
+                                        <div className="movieContainer">Sugerencias:
+                                            <ul>
+                                                <li>Busca por género: Accion, deporte, drama, comedia.. etc</li>
+                                                <li>Busca por reparto de Actores</li>
+                                                <li>Busca por titulo de pelicula</li>
+                                                <li>Busca por director</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            return <div className="movieContainer">{movie.title}</div>
+                        })}
+                    </div>
+                }
+            </div>
         </>
     )
 };
