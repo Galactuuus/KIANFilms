@@ -1,102 +1,44 @@
 import './Dashboard.sass';
 import { useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import fetchUserData from '../../Services/fetchUserData';
-import fetchUserOrders from '../../Services/fetchUserOrders';
 import DashboardHeader from '../../Components/dashboardHeader/DashboardHeader';
 import OrderCard from '../../Components/orderCard/OrderCard';
 import cookies from 'js-cookies';
+import { useDispatch, useSelector } from 'react-redux';
+import getUser from '../../Store/actions/actionGetUserProfile';
+import getOrders from '../../Store/actions/actionGetUserOrders';
+import dateFormatter from '../../util/dateFormatter';
 
 const Dashboard = () => {
 
-    const [user, setUser] = useState(null);
-    const [orderList, setOrderList] = useState(null);
-    const [pages, setPages] = useState(null);
-    const [error, setError] = useState(null);
-    const [date, setDate] = useState(null);
     const [current, setCurrent] = useState(1);
-    const [results, setResults] = useState({ from: 0, to: 10});
+    const [results, setResults] = useState({ from: 0, to: 10 });
 
     const history = useHistory();
 
     useEffect(() => {
         if (!cookies.getItem('auth')) history.push('/');
-        getUser();
-        getOrders(0, 10);
+        dispatch(getUser());
+        dispatch(getOrders(0, 10));
     }, []);
 
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [results])
 
-    const getUser = async () => {
+    const user = useSelector(state => state.user);
+    const orders = useSelector(state => state.orders);
 
-        try {
-            const user = await fetchUserData();
-            const userInfo = await user.json();
-
-            if (!user) return setError(0);
-            if (userInfo) setUser(userInfo);
-
-            const birthday = new Date(userInfo.born);
-            const day = birthday.getDate();
-            const month = birthday.getMonth() + 1;
-            const year = birthday.getFullYear();
-
-            setDate(`${month}-${day}-${year}`);
-
-        } catch (e) {
-            console.log(e);
-            setError(0);
-        }
-    }
-
-    const getOrders = async (skip, limit) => {
-
-        try {
-            const orderHistory = await fetchUserOrders(skip, limit);
-            const userOrders = await orderHistory.json();
-
-            const { orders } = userOrders
-            const { pages } = userOrders
-
-            if (userOrders.orders.length >= 1) {
-                setOrderList(orders);
-                setPages(pages);
-            } else {
-                setError(1);
-            }
-
-        } catch (e) {
-            console.log(e);
-            setError(0);
-        }
-    }
+    const dispatch = useDispatch();
 
     let msg;
 
-    if (error === 0) msg = <h3>Error interno</h3>
-    if (error === 1) msg = <h3>No hay ordenes</h3>
-
-    const getDate = (element) => {
-        const date = new Date(element);
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        const dateFormatted = `${day}-${month}-${year}`;
-
-        return dateFormatted
-    }
-
-    const signOut = (e) => {
-        e.preventDefault();
-        cookies.removeItem('auth');
-        history.push('/');
-    }
+    if (!user._id) msg = <h3>Error interno</h3>
+    if (!orders.orders) msg = <h3>No hay ordenes</h3>
 
     const nextPage = (e) => {
         e.preventDefault();
-        if (current < pages) {
+        if (current < orders.pages) {
             setResults({
                 from: results.from + 10,
                 to: results.to + 10
@@ -104,7 +46,6 @@ const Dashboard = () => {
             getOrders(results.from + 10, results.to + 10);
             setCurrent(current + 1);
         }
-
     }
 
     const prevPage = (e) => {
@@ -117,9 +58,13 @@ const Dashboard = () => {
             getOrders(results.from - 10, results.to - 10);
             setCurrent(current - 1);
         }
-
     }
 
+    const signOut = (e) => {
+        e.preventDefault();
+        cookies.removeItem('auth');
+        history.push('/');
+    }
 
     return (
         <>
@@ -137,24 +82,24 @@ const Dashboard = () => {
                         <div className="infoColumn">
                             {user && <div>{user.userName}</div>}
                             {user && <div>{user.email}</div>}
-                            {user && <div>{date}</div>}
+                            {user && <div>{user.date}</div>}
                             <div className="signOut" onClick={(e) => signOut(e)}>Sign out</div>
                         </div>
                     </div>
                     <h4>Historial de pedidos</h4>
 
-                    {orderList && orderList.map((element) =>
-                        <OrderCard key={orderList.indexOf(element)}
-                            title={element.movie.title} date={getDate(element.date)}
-                            returnDate={getDate(element.returnDate)}
+                    {orders.orders && orders.orders.map((element) =>
+                        <OrderCard key={orders.orders.indexOf(element)}
+                            title={element.movie.title} date={dateFormatter(element.date)}
+                            returnDate={dateFormatter(element.returnDate)}
                             poster={element.movie.poster}
                         />)}
 
                     {msg}
-                    
+
                     {!msg && <div className="pagination">
                         <i className="fas fa-angle-left" onClick={(e) => prevPage(e)}></i>
-                        <div>page {current} of {pages}</div>
+                        <div>page {current} of {orders.pages}</div>
                         <i className="fas fa-angle-right" onClick={(e) => nextPage(e)}></i>
                     </div>}
                 </div>
