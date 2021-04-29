@@ -42,7 +42,7 @@ const Home = () => {
                                     </div>
                                 )
                             }
-                            return <div className="movieContainer">{movie.title}</div>
+                            return <div className="movieContainer" key={MovieSearched.indexOf(movie)}><img className="imgSearched" src={process.env.PUBLIC_URL + "/img/" + movie.poster}></img></div>
                         })}
                     </div>
                 }
