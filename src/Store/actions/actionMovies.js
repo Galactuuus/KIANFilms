@@ -1,13 +1,17 @@
 
 export const addMovies = (params) => {
-    return {
-        type: 'ADD_MOVIES',
-        payload: params
-    };
+    return (dispatch) => {
+        dispatch({
+            type: 'ADD_MOVIES',
+            payload: params
+        })
+    }
 }
 
 export const removeMovies = () => {
-    return {
-        type: 'REMOVE_MOVIES'
-    };
+    return (dispatch) => {
+        dispatch({
+            type: 'REMOVE_MOVIES'
+        })
+    }
 }

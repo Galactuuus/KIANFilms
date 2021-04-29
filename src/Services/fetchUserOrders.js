@@ -8,7 +8,7 @@ const fetchUserOrders = async (skip, limit) => {
         const token = cookies.getItem('auth');
         const id = jwt.decode(token).id
 
-        const res = await fetch(`http://localhost:4000/order/user/${id}?skip=${skip}&limit=${limit}`, {
+        let res = await fetch(`http://localhost:4000/order/user/${id}?skip=${skip}&limit=${limit}`, {
             method: 'GET',
             headers:
             {
@@ -16,7 +16,7 @@ const fetchUserOrders = async (skip, limit) => {
                 "auth": token
             }
         });
-
+        res = res.json();
         return res;
 
     } catch (error) {

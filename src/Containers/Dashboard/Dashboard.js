@@ -54,9 +54,7 @@ const Dashboard = () => {
     const getOrders = async (skip, limit) => {
 
         try {
-            const orderHistory = await fetchUserOrders(skip, limit);
-            const userOrders = await orderHistory.json();
-
+            let userOrders = await fetchUserOrders(skip, limit);
             const { orders } = userOrders
             const { pages } = userOrders
 
