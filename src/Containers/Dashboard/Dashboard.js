@@ -12,7 +12,7 @@ import dateFormatter from '../../util/dateFormatter';
 const Dashboard = () => {
 
     const [current, setCurrent] = useState(1);
-    const [results, setResults] = useState({ from: 0, to: 10 });
+    const [results, setResults] = useState({ from: 0, limit: 10 });
 
     const history = useHistory();
 
@@ -24,6 +24,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
+        console.log(results.limit)
     }, [results])
 
     const user = useSelector(state => state.user);
@@ -41,9 +42,9 @@ const Dashboard = () => {
         if (current < orders.pages) {
             setResults({
                 from: results.from + 10,
-                to: results.to + 10
+                limit: 10
             });
-            getOrders(results.from + 10, results.to + 10);
+            dispatch(getOrders(results.from + 10, results.limit));
             setCurrent(current + 1);
         }
     }
@@ -53,9 +54,9 @@ const Dashboard = () => {
         if (current > 1) {
             setResults({
                 from: results.from - 10,
-                to: results.to - 10
+                limit: 10
             });
-            getOrders(results.from - 10, results.to - 10);
+            dispatch(getOrders(results.from - 10, results.limit));
             setCurrent(current - 1);
         }
     }
