@@ -6,6 +6,7 @@ import Carrousel from '../../Components/carrousel/Carrousel.js';
 import { useSelector } from 'react-redux';
 import cookies from 'js-cookies';
 import Slider from "react-slick";
+import SearchCard from '../../Components/searchCard/searchCard';
 
 const Home = () => {
 
@@ -42,7 +43,7 @@ const Home = () => {
                                     </div>
                                 )
                             }
-                            return <div className="movieContainer" key={MovieSearched.indexOf(movie)}><img className="imgSearched" src={process.env.PUBLIC_URL + "/img/" + movie.poster}></img></div>
+                            return <SearchCard item={movie} />
                         })}
                     </div>
                 }

@@ -8,10 +8,12 @@
     font-size: small
     height: 4em
     top: 0
+    position: sticky
     width: 100%
     z-index: 1
 
 .headerLogo
+    transition: 1s ease
     font-size: 2em
     margin-left: 1em
     color: #05cc47
@@ -32,3 +34,8 @@
 .fa-user-circle
     cursor: pointer
     color: #05cc47
+
+@media (max-width: 500px)
+    .headerLogo
+        transition: 1s ease
+        font-size: 1em
