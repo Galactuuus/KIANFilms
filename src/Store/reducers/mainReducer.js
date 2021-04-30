@@ -6,6 +6,7 @@ import msgReducer from './msgReducer';
 import searchingReducer from './searchingReducer';
 import userDataReducer from './userDataReducer';
 import userOrdersReducer from './userOrdersReducer';
+import carrouselReducer from '../reducers/carrouselReducer'
 
 const mainReducer = combineReducers({
     isLogged: isLoggedReducer,
@@ -14,7 +15,8 @@ const mainReducer = combineReducers({
     movies: moviesReducer,
     searching: searchingReducer,
     user: userDataReducer,
-    orders: userOrdersReducer
+    orders: userOrdersReducer,
+    carrousel: carrouselReducer
 })
 
 export default mainReducer;
