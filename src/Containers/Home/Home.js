@@ -35,20 +35,20 @@ const Home = () => {
         dispatch(fetchByGenre('sci-fi', 15));
         dispatch(fetchByGenre('crime', 15));
     }, []);
-    
+
     return (
         <>
             <Header />
             <div className="homeBody">
                 {!searching &&
                     <>
-                        <Carrousel movies={actionMovies} title={'Peliculas de Accion'}/>
-                        <Carrousel movies={thrillerMovies} title={'Thrillers'}/>
-                        <Carrousel movies={animationMovies} title={'Peliculas Animadas'}/>
-                        <Carrousel movies={romanceMovies} title={'Peliculas de Romance'}/>
-                        <Carrousel movies={horrorMovies} title={'Peliculas de Terror'}/>
-                        <Carrousel movies={sciFiMovies} title={'Peliculas de Ciencia Ficción'}/>
-                        <Carrousel movies={crimeMovies} title={'Peliculas de Crimen'}/>
+                        <Carrousel movies={actionMovies} title={'Peliculas de Accion'} />
+                        <Carrousel movies={thrillerMovies} title={'Thrillers'} />
+                        <Carrousel movies={animationMovies} title={'Peliculas Animadas'} />
+                        <Carrousel movies={romanceMovies} title={'Peliculas de Romance'} />
+                        <Carrousel movies={horrorMovies} title={'Peliculas de Terror'} />
+                        <Carrousel movies={sciFiMovies} title={'Peliculas de Ciencia Ficción'} />
+                        <Carrousel movies={crimeMovies} title={'Peliculas de Crimen'} />
                     </>}
                 {searching &&
                     <div className="searchedMovies">
