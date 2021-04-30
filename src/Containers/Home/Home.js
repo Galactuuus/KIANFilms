@@ -5,6 +5,7 @@ import Header from '../../Components/header/Header'
 import Carrousel from '../../Components/carrousel/Carrousel.js';
 import { useSelector } from 'react-redux';
 import cookies from 'js-cookies';
+import Slider from "react-slick";
 
 const Home = () => {
 
@@ -17,14 +18,13 @@ const Home = () => {
         if (isLogged === false && !cookies.getItem('auth')) history.push('/');
     }, [])
 
+
     return (
         <>
             <Header />
             <div className="homeBody">
                 {!searching &&
                     <>
-                        <div className="home">HOME</div>
-                        <Carrousel />
                     </>}
                 {searching &&
                     <div className="searchedMovies">
