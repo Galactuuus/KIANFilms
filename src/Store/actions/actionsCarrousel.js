@@ -1,10 +1,10 @@
 import cookies from 'js-cookies';
 
-let token = cookies.getItem('auth');
 
 export const fetchByGenre = (genre, limit) => {
     return async (dispatch) => {
-
+        
+        let token = cookies.getItem('auth');
         try {
             let res = await fetch(`http://localhost:4000/movie/genre?genre=${genre}&limit=${limit}`, {
                 method: 'GET',
@@ -78,25 +78,5 @@ export const fetchByGenre = (genre, limit) => {
         } catch (error) {
             console.log(error);
         }
-    }
-}
-
-export const fetchByPerformer = async (performer, limit) => {
-
-    try {
-        let res = await fetch(`http://localhost:4000/movie/genre?genre=${performer}&limit=${limit}`, {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                auth: token
-            }
-        });
-
-        res = await res.json();
-
-        return res
-
-    } catch (error) {
-        console.log(error);
     }
 }

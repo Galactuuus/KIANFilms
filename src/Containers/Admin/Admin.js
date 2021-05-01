@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import DashboardHeader from '../../Components/dashboardHeader/DashboardHeader';
 import fetchUserByEmail from '../../Services/fetchUserByEmail';
+import getUserOrders from '../../Services/fetchUserOrders';
 import getOrders from '../../Store/actions/actionGetUserOrders';
 import getUser from '../../Store/actions/actionGetUserProfile';
 import './Admin.sass'
@@ -13,6 +14,7 @@ const Admin = () => {
     const [current, setCurrent] = useState(1);
     const [results, setResults] = useState({ from: 0, limit: 10 });
     const [usersList, setUsersList] = useState([]);
+    const [orders, setOrders] = useState([])
 
     const user = useSelector(state => state.user);
 
@@ -43,6 +45,16 @@ const Admin = () => {
             setUsersList(fetchedUsers);
         }
         if (email === '') setUsersList([]);
+    }
+
+    const selectUser = async (id) => {
+        
+        const userOrders = await getUserOrders(id, results.from, results.limit);
+
+        setOrders(userOrders);
+
+        console.log(orders)
+
     }
 
     const nextPage = (e) => {
@@ -116,7 +128,7 @@ const Admin = () => {
                     <div className="usersList">
                         {usersList.users && usersList.users.map(element => <div className="user" key={usersList.users.indexOf(element)}>
                             <div>{element.email}</div>
-                            <button className="selectUser">Select</button>
+                            <button className="selectUser" onClick={() => selectUser(element._id)}>Select</button>
                         </div>)}
                     </div>
 
