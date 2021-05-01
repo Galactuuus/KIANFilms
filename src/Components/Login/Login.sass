@@ -1,16 +1,17 @@
 .logContainer
     display: flex
-    align-items: center
+    align-items: flex-start
     justify-content: center
     width: 100%
-    height: 50%
+    height: 100%
 
 .logForm
     width: 20%
-    height: 100%
+    min-height: 45vh
     display: flex
     flex-direction: column
     align-items: center
+    justify-content: flex-start
     background: rgba( 255, 255, 255, 0.80 )
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
     backdrop-filter: blur( 0.0px )
@@ -18,8 +19,14 @@
     border-radius: 10px
     border: 1px solid rgba( 255, 255, 255, 0.18 )
 
+.logContainer > form
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
 .logTitle
-    margin-top: 2em 
+    margin-top: 1em
 
 .mainInput
     margin-top: 1.5em
@@ -27,8 +34,7 @@
     outline: none
     border: none
     border-radius: 2em
-    border-bottom: 2px solid #4dc47d 
-
+    border-bottom: 2px solid #4dc47d
 
 .mainBtn
     margin-top: 3em
@@ -40,6 +46,7 @@
     border-radius: 2em
     box-shadow: 0px 12px 15px -5px #181a1b
     transition: 1s ease
+    margin-bottom: 1em
 
 .mainBtn:hover
     transition: 1s ease
@@ -51,25 +58,31 @@
     font-size: 0.8em
     color: red
 
-    
+@media ( max-width: 1024px )
+    .mainBtn
+        margin-top: 1.5em
+        width: 8em
+        height: 2em
+
+    .mainBtnRegister
+        margin-top: -6em
+        width: 8em
+        height: 2em
+
 @media ( max-width: 350px )
     .logForm
         transition: 1s ease
         width: 80%
-    
-
 
 @media (max-width: 1200px)
     .logForm
         transition: 1s ease
         width: 30%
 
-
 @media (max-width: 900px)
     .logForm
         transition: 1s ease
         width: 40%
-    
 
 @media (max-width: 700px)
     .logForm
@@ -79,4 +92,4 @@
 @media (max-width: 550px)
     .logForm
         transition: 1s ease
-        width: 60%
+        width: 80%
