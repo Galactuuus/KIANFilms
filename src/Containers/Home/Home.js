@@ -5,6 +5,7 @@ import Header from '../../Components/header/Header'
 import Carrousel from '../../Components/carrousel/Carrousel.js';
 import { useDispatch, useSelector } from 'react-redux';
 import cookies from 'js-cookies';
+import SearchCard from '../../Components/searchCard/searchCard';
 import { fetchByGenre } from '../../Store/actions/actionsCarrousel';
 
 const Home = () => {
@@ -36,6 +37,7 @@ const Home = () => {
         dispatch(fetchByGenre('crime', 15));
     }, []);
 
+
     return (
         <>
             <Header />
@@ -66,7 +68,7 @@ const Home = () => {
                                     </div>
                                 )
                             }
-                            return <div className="movieContainer" key={MovieSearched.indexOf(movie)}><img className="imgSearched" src={process.env.PUBLIC_URL + "/img/" + movie.poster}></img></div>
+                            return <SearchCard item={movie} />
                         })}
                     </div>
                 }

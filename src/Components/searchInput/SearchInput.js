@@ -13,14 +13,6 @@ const SearchInput = () => {
     const SearchMovies = async (e) => {
         if(e !== "" ){
             if(searching === false) dispatch(searchingTrue({ search: true, data: e } ));
-            let dataByParam = await fetchByParam(e);
-            if (!dataByParam ) {
-                dispatch(removeMovies());
-            };
-            
-            dispatch(removeMovies());
-            dispatch(addMovies(dataByParam));
-
         }else{
             dispatch(searchingFalse());
         }

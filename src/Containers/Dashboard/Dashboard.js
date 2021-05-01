@@ -24,7 +24,6 @@ const Dashboard = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        console.log(results.limit)
     }, [results])
 
     const user = useSelector(state => state.user);
@@ -86,6 +85,10 @@ const Dashboard = () => {
                             {user && <div>{user.email}</div>}
                             {user && <div>{user.date}</div>}
                             <div className="signOut" onClick={(e) => signOut(e)}>Sign out</div>
+                        </div>
+                        <div className="changeColumn">
+                            {user && <div><button className="changeBtn">Cambiar</button></div>}
+                            {user && <div><button className="changeBtn">Cambiar</button></div>}
                         </div>
                     </div>
                     <h4>Historial de pedidos</h4>
