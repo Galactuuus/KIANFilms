@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Login from '../../Components/Login/Login.js'
 import Register from '../../Components/Register/Register';
 import store from '../../Store/store'
+import logo from '../../logo3.png'
 
 const Main = () => {
 
@@ -19,7 +20,7 @@ const Main = () => {
     return (
         <>
             <div className="main">
-                <div className="logo"><img className="imgLogo" src=""></img></div>
+                <div className="logo"><img className="imgLogo" src={logo}></img></div>
                 {msg && <div className="welcome">🥳  Gracias por registrarte, inicia sesión y comienza a disfrutar 🥳</div>}
                 <div className="logForm">
                     {!entrance && <Login />}
