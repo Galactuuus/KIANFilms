@@ -10,6 +10,8 @@ import { fetchByGenre } from '../../Store/actions/actionsCarrousel';
 
 const Home = () => {
 
+    const [cookie, setcookie] = useState(null)
+
     const history = useHistory();
     const isLogged = useSelector((state) => state.loginState.logged);
     const searching = useSelector((state) => state.searching);
@@ -26,8 +28,14 @@ const Home = () => {
 
     const dispatch = useDispatch();
 
+    
     useEffect(() => {
-        if (isLogged === false && !cookies.getItem('auth')) history.push('/');
+        const getCookie = cookies.getItem('auth')
+        if (isLogged === false && !getCookie) history.push('/');
+        setcookie(getCookie)
+    }, []);
+    
+    useEffect(() => {
         dispatch(fetchByGenre('action', 15));
         dispatch(fetchByGenre('thriller', 15));
         dispatch(fetchByGenre('animation', 15));
@@ -35,8 +43,7 @@ const Home = () => {
         dispatch(fetchByGenre('horror', 15));
         dispatch(fetchByGenre('sci-fi', 15));
         dispatch(fetchByGenre('crime', 15));
-    }, []);
-
+    }, [cookie])
 
     return (
         <>
