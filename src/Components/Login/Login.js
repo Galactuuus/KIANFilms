@@ -31,9 +31,12 @@ const Login = () => {
         setEmailColor('mainInput')
         const email = e.target[0].value;
         const password = e.target[1].value;
+        
 
         let response = await fetchLogin(email, password);
-        if(response.token){
+        if (!response) {
+            setError(3)
+        } else if (response.token){
             cookies.setItem('auth', response.token);
             store.dispatch({
                 type: 'SET_LOG',
@@ -53,13 +56,16 @@ const Login = () => {
 
     }
 
-
-
     return (
         <>
             <div className="logContainer">
-                <form className="logForm" onSubmit={e => Validation(e)}>                    
+                <form onSubmit={e => Validation(e)}>                    
                     <h1 className="logTitle">Identifícate</h1>
+                    {error === 3 && 
+                        <div>
+                            <span>Error Interno</span>
+                        </div>
+                    }
                     <div>
                         <input className={emailColor} name="email" type="email" placeholder="Introduce el email" required ref={focusEmail}/>
                     </div>
