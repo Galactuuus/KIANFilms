@@ -33,8 +33,9 @@ const Dashboard = () => {
 
     let msg;
 
+    console.log(orders.pages)
     if (!user._id) msg = <h3>Error interno</h3>
-    if (!orders.orders) msg = <h3>No hay ordenes</h3>
+    if (!orders.pages) msg = <h3>No hay peliculas alquiladas</h3>
 
     const nextPage = (e) => {
         e.preventDefault();

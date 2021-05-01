@@ -22,8 +22,7 @@ const Carrousel = (props) => {
         <>
             <div className="peliculas-recomendadas contenedor">
                 <div className="contenedor-titulo-controles">
-                    <h3>{props.title}</h3>
-                    <div className="indicadores"></div>
+                    <h3 className="categoryTitle">{props.title}</h3>
                 </div>
 
                 <div className="contenedor-principal">
@@ -31,7 +30,7 @@ const Carrousel = (props) => {
 
                     <div ref={fila} className="contenedor-carousel">
                         <div className="carousel">
-                            {movies && movies.map(element => <CarrouselMovies key={movies.indexOf(element)} poster={element.poster} link={"/home"}/>)}
+                            {movies && movies.map(element => <CarrouselMovies key={movies.indexOf(element)} poster={element.poster} title={element.title} link={"/home"}/>)}
                         </div>
                     </div>
 
