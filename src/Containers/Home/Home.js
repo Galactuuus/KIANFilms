@@ -11,7 +11,7 @@ import { fetchByGenre } from '../../Store/actions/actionsCarrousel';
 const Home = () => {
 
     const history = useHistory();
-    const isLogged = useSelector((state) => state.isLogged);
+    const isLogged = useSelector((state) => state.loginState.logged);
     const searching = useSelector((state) => state.searching);
 
     const MovieSearched = useSelector((state) => state.movies);

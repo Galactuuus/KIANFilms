@@ -1,15 +1,14 @@
-import './Dashboard.sass';
-import { useHistory } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import cookies from 'js-cookies';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import DashboardHeader from '../../Components/dashboardHeader/DashboardHeader';
 import OrderCard from '../../Components/orderCard/OrderCard';
-import cookies from 'js-cookies';
-import { useDispatch, useSelector } from 'react-redux';
-import getUser from '../../Store/actions/actionGetUserProfile';
 import getOrders from '../../Store/actions/actionGetUserOrders';
+import getUser from '../../Store/actions/actionGetUserProfile';
 import dateFormatter from '../../util/dateFormatter';
 
-const Dashboard = () => {
+const Admin = () => {
 
     const [current, setCurrent] = useState(1);
     const [results, setResults] = useState({ from: 0, limit: 10 });
@@ -110,7 +109,6 @@ const Dashboard = () => {
             </div>
         </>
     )
+}
 
-};
-
-export default Dashboard;
+export default Admin;

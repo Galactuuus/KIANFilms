@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import entranceReducer from './entranceReducer';
-import isLoggedReducer from './isLoggedReducer';
+import loginReducer from './LoginReducer';
 import moviesReducer from './moviesReducer';
 import msgReducer from './msgReducer';
 import searchingReducer from './searchingReducer';
@@ -9,7 +9,7 @@ import userOrdersReducer from './userOrdersReducer';
 import carrouselReducer from '../reducers/carrouselReducer'
 
 const mainReducer = combineReducers({
-    isLogged: isLoggedReducer,
+    loginState: loginReducer,
     entrance: entranceReducer,
     msg: msgReducer,
     movies: moviesReducer,

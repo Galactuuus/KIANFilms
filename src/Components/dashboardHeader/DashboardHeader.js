@@ -1,7 +1,7 @@
 import './DashboardHeader.sass';
 import { Link } from "react-router-dom";
 
-const dashboardHeader = () => {
+const DashboardHeader = () => {
     return (
         <div className="header">
             <div className="headerLogo">KIANFILMS</div>
@@ -12,4 +12,4 @@ const dashboardHeader = () => {
     )
 }
 
-export default dashboardHeader;
+export default DashboardHeader;
