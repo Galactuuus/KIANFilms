@@ -5,12 +5,8 @@ import Header from '../../Components/header/Header'
 import Carrousel from '../../Components/carrousel/Carrousel.js';
 import { useDispatch, useSelector } from 'react-redux';
 import cookies from 'js-cookies';
-<<<<<<< HEAD
-import Slider from "react-slick";
 import SearchCard from '../../Components/searchCard/searchCard';
-=======
 import { fetchByGenre } from '../../Store/actions/actionsCarrousel';
->>>>>>> 7a56044cd7417aead71d3cd609543c9d73780779
 
 const Home = () => {
 
@@ -48,8 +44,6 @@ const Home = () => {
             <div className="homeBody">
                 {!searching &&
                     <>
-<<<<<<< HEAD
-=======
                         <Carrousel movies={actionMovies} title={'Peliculas de Accion'} />
                         <Carrousel movies={thrillerMovies} title={'Thrillers'} />
                         <Carrousel movies={animationMovies} title={'Peliculas Animadas'} />
@@ -57,7 +51,6 @@ const Home = () => {
                         <Carrousel movies={horrorMovies} title={'Peliculas de Terror'} />
                         <Carrousel movies={sciFiMovies} title={'Peliculas de Ciencia Ficción'} />
                         <Carrousel movies={crimeMovies} title={'Peliculas de Crimen'} />
->>>>>>> 7a56044cd7417aead71d3cd609543c9d73780779
                     </>}
                 {searching &&
                     <div className="searchedMovies">
