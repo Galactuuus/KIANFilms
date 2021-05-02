@@ -2,7 +2,7 @@ import './DashboardHeader.sass';
 import { Link } from "react-router-dom";
 import logo from '../../logo2.png';
 
-const dashboardHeader = () => {
+const DashboardHeader = () => {
     return (
         <div className="header">
             <div className="headerLogo"><img className="imgLogo" src={logo} /></div>
@@ -13,4 +13,4 @@ const dashboardHeader = () => {
     )
 }
 
-export default dashboardHeader;
+export default DashboardHeader;

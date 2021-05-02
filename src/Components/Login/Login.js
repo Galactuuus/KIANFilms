@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import fetchLogin from '../../Services/fetchLogin.js';
 import cookies from 'js-cookies';
-import setLog from '../../Store/actions/actionSetLog';
+import { setLog, setRole } from '../../Store/actions/actionLogin';
 import { useDispatch } from 'react-redux';
 
 
@@ -12,7 +12,6 @@ const Login = () => {
     const [error, setError] = useState(0);
     const [pwColor, setPwColor] = useState('mainInput');
     const [emailColor, setEmailColor] = useState('mainInput');
-
 
     const focusEmail = React.createRef();
     const history = useHistory();
@@ -38,6 +37,7 @@ const Login = () => {
         } else if (response.token){
             cookies.setItem('auth', response.token);
             dispatch(setLog(true));
+            dispatch(setRole(response.role));
             history.push('/home');
         }else{
             if(response.message === 'The email is incorrect') {

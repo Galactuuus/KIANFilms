@@ -16,11 +16,10 @@ const getUser = () => {
                     "auth": token
                 }
             });
-
+            
             res = await res.json();
-
+                        
             const dateFormatted = getDate(res.born)
-
             const userData = { ...res, date: dateFormatted };
 
             dispatch(

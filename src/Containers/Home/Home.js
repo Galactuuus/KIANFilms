@@ -11,7 +11,7 @@ import { fetchByGenre } from '../../Store/actions/actionsCarrousel';
 const Home = () => {
 
     const history = useHistory();
-    const isLogged = useSelector((state) => state.isLogged);
+    const isLogged = useSelector((state) => state.loginState.logged);
     const searching = useSelector((state) => state.searching);
 
     const MovieSearched = useSelector((state) => state.movies);
@@ -26,6 +26,7 @@ const Home = () => {
 
     const dispatch = useDispatch();
 
+
     useEffect(() => {
         if (isLogged === false && !cookies.getItem('auth')) history.push('/');
         dispatch(fetchByGenre('action', 15));
@@ -36,8 +37,6 @@ const Home = () => {
         dispatch(fetchByGenre('sci-fi', 15));
         dispatch(fetchByGenre('crime', 15));
     }, []);
-
-
 
     return (
         <>

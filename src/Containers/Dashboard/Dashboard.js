@@ -33,8 +33,7 @@ const Dashboard = () => {
     const dispatch = useDispatch();
 
     let msg;
-
-    console.log(orders.pages)
+    
     if (!user._id) msg = <h3>Error interno</h3>
     if (!orders.pages) msg = <h3>No hay peliculas alquiladas</h3>
 
