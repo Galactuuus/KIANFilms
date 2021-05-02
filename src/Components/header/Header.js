@@ -7,7 +7,7 @@ import './Header.sass';
 import logo from '../../logo2.png'
 
 const Header = () => {
-    
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -26,7 +26,11 @@ const Header = () => {
 
     return (
         <div className="header">
-            <div className="headerLogo"><img className="imgLogo" src={logo} /></div>
+            <div className="headerLogo">
+                <Link to="/home">
+                    <img className="imgLogoHeader" src={logo} />
+                </Link>
+            </div>
             <div className="actionPanel">
                 <input id="toggle" type="checkbox"></input>
                 <label id="searchBarLabel" htmlFor="toggle"><i className="fas fa-search"></i></label>
