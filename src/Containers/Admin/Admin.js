@@ -45,11 +45,10 @@ const Admin = () => {
             if (email !== '') {
                 fetchedUsers = await fetchUserByEmail(email)
                 setUsersList(fetchedUsers);
-                setError(null);
             }
-
+            
+            if (email !== '' && fetchedUsers.users.length >= 1) setError(3);
             if (email !== '' && fetchedUsers.users.length < 1) setError(1);
-
             if (email === '') {
                 setUsersList({});
                 setError(null)
@@ -182,7 +181,7 @@ const Admin = () => {
 
                     {msg}
 
-                    {!msg && <div className="pagination">
+                    {error === 3 && <div className="pagination">
                         <i className="fas fa-angle-left" onClick={(e) => prevPage(e)}></i>
                         <div>page {current} of {usersList.pages ? usersList.pages : 1}</div>
                         <i className="fas fa-angle-right" onClick={(e) => nextPage(e)}></i>
