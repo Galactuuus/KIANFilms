@@ -7,12 +7,12 @@ import './Header.sass';
 import logo from '../../logo2.png'
 
 const Header = () => {
-
+    
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getUser());
-    }, [])
+    }, [dispatch])
 
     let role
 
@@ -26,11 +26,7 @@ const Header = () => {
 
     return (
         <div className="header">
-            <div className="headerLogo">
-                <Link to="/home">
-                    <img className="imgLogoHeader" src={logo} />
-                </Link>
-            </div>
+            <div className="headerLogo"><img className="imgLogo" src={logo} alt="KIANFilms logo"/></div>
             <div className="actionPanel">
                 <input id="toggle" type="checkbox"></input>
                 <label id="searchBarLabel" htmlFor="toggle"><i className="fas fa-search"></i></label>

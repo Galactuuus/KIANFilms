@@ -13,7 +13,7 @@ const ChangeView = (props) => {
         if(!redirect.email && !redirect.useName && !redirect.paswword) {
             history.push('/')
         }
-    }, [])
+    }, [history, redirect.email, redirect.useName, redirect.paswword])
 
     return (
         <>

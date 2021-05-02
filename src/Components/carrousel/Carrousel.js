@@ -27,7 +27,7 @@ const Carrousel = (props) => {
                 </div>
 
                 <div className="contenedor-principal">
-                    <button role="button" onClick={slideLeft} ref={flechaIzquierda} className="flecha-izquierda"><i className="fas fa-angle-left"></i></button>
+                    <button type="button" onClick={slideLeft} ref={flechaIzquierda} className="flecha-izquierda"><i className="fas fa-angle-left"></i></button>
 
                     <div ref={fila} className="contenedor-carousel">
                         <div className="carousel">
@@ -35,7 +35,7 @@ const Carrousel = (props) => {
                         </div>
                     </div>
 
-                    <button role="button" onClick={slideRight} ref={flechaDerecha} className="flecha-derecha"><i className="fas fa-angle-right"></i></button>
+                    <button type="button" onClick={slideRight} ref={flechaDerecha} className="flecha-derecha"><i className="fas fa-angle-right"></i></button>
                 </div>
             </div>
 
