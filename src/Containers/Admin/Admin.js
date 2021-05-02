@@ -7,6 +7,7 @@ import fetchUserByEmail from '../../Services/fetchUserByEmail';
 import getUserOrders from '../../Services/fetchUserOrders';
 import getOrders from '../../Store/actions/actionGetUserOrders';
 import getUser from '../../Store/actions/actionGetUserProfile';
+import dateFormatter from '../../util/dateFormatter'
 import './Admin.sass'
 
 const Admin = () => {
@@ -21,25 +22,23 @@ const Admin = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const focusEmail = React.createRef();
-
     useEffect(() => {
         if (!cookies.getItem('auth')) history.push('/');
         dispatch(getUser());
-        focusEmail.current.focus();
     }, []);
 
     let msg;
 
     if (!user._id) msg = <h3>Error interno</h3>
-    if (!usersList) msg = <h3>No existen usuarios con ese email</h3>
-    
+    // if (usersList.length < 1) msg = <h3>No existen usuarios con ese email</h3>
+
     const findByEmail = async (event) => {
         event.preventDefault();
 
         let email = event.target.value;
         let fetchedUsers
 
+        // if (!fetchedUsers) setUsersList([]);
         if (email !== '') {
             fetchedUsers = await fetchUserByEmail(email);
             setUsersList(fetchedUsers);
@@ -48,13 +47,10 @@ const Admin = () => {
     }
 
     const selectUser = async (id) => {
-        
+
         const userOrders = await getUserOrders(id, results.from, results.limit);
 
-        setOrders(userOrders);
-
-        console.log(orders)
-
+        setOrders(userOrders.orders);
     }
 
     const nextPage = (e) => {
@@ -112,25 +108,48 @@ const Admin = () => {
                             {user && <div><button className="changeBtn">Cambiar</button></div>}
                         </div>
                     </div>
-                    <h4>Búsqueda de clientes</h4>
-                    <form>
-                        <div>
-                            <input
-                                className="mainInput"
-                                type="email"
-                                name="email"
-                                placeholder="example@example.com"
-                                ref={focusEmail}
-                                onInput={(e) => findByEmail(e)}
-                            ></input>
+
+                        <h4>Búsqueda de clientes</h4>
+                        <form>
+                            <div>
+                                <input
+                                    className="mainInput"
+                                    type="email"
+                                    name="email"
+                                    placeholder="example@example.com"
+                                    onInput={(e) => findByEmail(e)}
+                                ></input>
+                            </div>
+                        </form>
+                        
+                    {orders.length === 0 && <div className="searchingClients">
+                        <div className="usersList">
+                            {usersList.users && usersList.users.map(element => <div className="user" key={usersList.users.indexOf(element)}>
+                                <div>{element.email}</div>
+                                <button className="selectUser" onClick={() => selectUser(element._id)}>Select</button>
+                            </div>)}
                         </div>
-                    </form>
-                    <div className="usersList">
-                        {usersList.users && usersList.users.map(element => <div className="user" key={usersList.users.indexOf(element)}>
-                            <div>{element.email}</div>
-                            <button className="selectUser" onClick={() => selectUser(element._id)}>Select</button>
-                        </div>)}
-                    </div>
+                    </div>}
+
+                    {orders.length >= 1 && <div className="searchingClients">
+                        <h4>Historial del cliente</h4>
+                        <div className="ordersList">
+                            <div className="clientOrders">
+                                <strong>Título</strong>
+                                <div className="orderDates">
+                                    <strong>Alquilada</strong>
+                                    <strong>Devolución</strong>
+                                </div>
+                            </div>
+                            {orders.map(order => <div className="clientOrders">
+                                <div>{order.movie.title}</div>
+                                <div className="orderDates">
+                                    <div>{dateFormatter(order.date)}</div>
+                                    <div>{dateFormatter(order.returnDate)}</div>
+                                </div>
+                            </div>)}
+                        </div>
+                    </div>}
 
                     {msg}
 

@@ -15,7 +15,8 @@ const getUserOrders = async (id, skip, limit) => {
         });
         
         res = await res.json();
-        console.log(res)
+
+        return res
         
     } catch (e) {
         console.log(e);
