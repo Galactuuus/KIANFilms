@@ -18,6 +18,7 @@ const fetchUserByEmail = async (email) => {
 
         return users;
 
+
     } catch (e) {
         console.log(e.message);
     }
