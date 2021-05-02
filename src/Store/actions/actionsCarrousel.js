@@ -73,6 +73,8 @@ export const fetchByGenre = (genre, limit) => {
                         }
                     );
                     break;
+                default:
+                    return res
             }
 
         } catch (error) {

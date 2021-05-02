@@ -18,19 +18,20 @@ const Admin = () => {
     const [orders, setOrders] = useState([]);
     const [error, setError] = useState(null)
 
-    const user = useSelector(state => state.user);
+    const user = useSelector(state => state.user);    
+    const dispatch = useDispatch();
+    const history = useHistory();
     
     let role
     role = useSelector(state => state.loginState.role);
     role = useSelector(state => state.user.role);
-
-    const history = useHistory();
-    const dispatch = useDispatch();
-
+    
     useEffect(() => {
         dispatch(getUser());
         if (role !== 'admin') history.push('/home');
-    }, []);
+    }, [dispatch, history, role])
+
+
     
     useEffect(() => {
         if (!user._id) setError(0);
