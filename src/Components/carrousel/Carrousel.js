@@ -1,8 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import CarrouselMovies from '../carrouselMovies/CarrouselMovies';
 import './Carrousel.sass';
-import Modal from 'react-modal';
-import MovieRentView from '../MovieRentView/MovieRentView'
 
 const Carrousel = (props) => {
 
@@ -11,9 +9,6 @@ const Carrousel = (props) => {
     const flechaDerecha = useRef();
 
     const movies = props.movies;
-
-    const [popUp, setPopUp] = useState(false);
-    const [movieClick, setMovieClick] = useState();
 
     const slideRight = () => {
         fila.current.scrollLeft += fila.current.offsetWidth;

@@ -7,25 +7,12 @@
 
 .contenedor-titulo-controles
     display: flex
-    justify-content: space-between
+    justify-content: flex-start
     align-items: end
 
     & h3
-        color: black
-        font-size: 30px
-
-    & .indicadores button
-        background: #fff
-        height: 3px
-        width: 10px
-        cursor: pointer
-        border: none
-        margin-right: 2px
-
-    & .indicadores button:hover,
-
-    & .indicadores button.activo
-        background: red
+        color: white
+        font-size: 1.85em
 
 .peliculas-recomendadas
     margin-bottom: 70px
@@ -42,13 +29,13 @@
         border: none
         background: rgba(0,0,0,0.3)
         font-size: 40px
-        height: 50%
-        top: calc(50% - 25%)
+        height: 80%
+        top: calc(35% - 25%)
         line-height: 40px
-        width: 50px
-        color: #fff
+        width: 35px
+        color: #4dc47d
         cursor: pointer
-        z-index: 500
+        z-index: 3
         transition: .2s ease all
 
     & .contenedor-principal .flecha-izquierda:hover,
@@ -73,6 +60,7 @@
         flex-wrap: nowrap
 
     & .contenedor-carousel .carousel .pelicula
+        position: relative
         max-width: 20%
         min-width: 20%
         transition: .3s ease all
@@ -81,7 +69,67 @@
     & .contenedor-carousel .carousel .pelicula.hover
         transform: scale(1.2)
         transform-origin: center
+        z-index: 2
 
     & .contenedor-carousel .carousel .pelicula img
         width: 100%
         vertical-align: top
+
+.movieTitle
+    position: absolute
+    top: 0
+    text-decoration: none
+    color: white
+    font-size: 1.5em
+    visibility: hidden
+    background-color: rgba(0,0,0, .4)
+    width: 100%
+    height: 100%
+
+.movieTitle.hover
+    visibility: visible
+
+.movieTitleText
+    margin-top: 0.1em
+    margin-left: 1.5em
+    margin-right: 1.5em
+    text-shadow: 1px 1px 2px black
+
+@media (max-width: 1024px)
+
+    .contenedor-titulo-controles > h3
+        font-size: 1.5em
+
+    .movieTitle
+        font-size: 1em
+
+    .movieTitleText
+        margin-top: 0.5em
+
+    .peliculas-recomendadas
+
+        & .contenedor-principal .flecha-izquierda,
+
+        & .contenedor-principal .flecha-derecha
+            width: 25px
+
+    .peliculas-recomendadas
+        & .contenedor-carousel .carousel .pelicula
+            max-width: calc(100% / 3)
+            min-width: calc(100% / 3)
+
+@media (max-width: 768px)
+    .peliculas-recomendadas
+        & .contenedor-carousel
+            overflow-x: scroll
+            overflow-x: hidden
+
+@media (max-width: 425px)
+
+    .contenedor-titulo-controles > h3
+        font-size: 1.25em
+
+    .peliculas-recomendadas
+        & .contenedor-carousel .carousel .pelicula
+            max-width: calc(100% / 2)
+            min-width: calc(100% / 2)

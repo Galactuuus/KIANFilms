@@ -1,5 +1,6 @@
 const fetchLogin = async (email, password) => {
 
+    try {
     let response = await fetch('http://localhost:4000/login', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -15,7 +16,9 @@ const fetchLogin = async (email, password) => {
         response = await response.json();
         return response;
     }
-    
+    } catch (e) {
+        console.log(e.message)
+    }
 }
 
 export default fetchLogin;
