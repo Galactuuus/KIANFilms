@@ -80,3 +80,14 @@ export const fetchByGenre = (genre, limit) => {
         }
     }
 }
+
+export const resetMovies = () => {
+    return (dispatch) => {
+
+        dispatch(
+            {
+                type: 'RESET_CARROUSEL'
+            }
+        );
+    }
+}

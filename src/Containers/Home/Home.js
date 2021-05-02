@@ -6,7 +6,7 @@ import Carrousel from '../../Components/carrousel/Carrousel.js';
 import { useDispatch, useSelector } from 'react-redux';
 import cookies from 'js-cookies';
 import SearchCard from '../../Components/searchCard/searchCard';
-import { fetchByGenre } from '../../Store/actions/actionsCarrousel';
+import { fetchByGenre, resetMovies } from '../../Store/actions/actionsCarrousel';
 
 const Home = () => {
 
@@ -29,6 +29,7 @@ const Home = () => {
 
     useEffect(() => {
         if (isLogged === false && !cookies.getItem('auth')) history.push('/');
+        dispatch(resetMovies());
         dispatch(fetchByGenre('action', 15));
         dispatch(fetchByGenre('thriller', 15));
         dispatch(fetchByGenre('animation', 15));

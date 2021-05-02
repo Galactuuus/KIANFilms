@@ -9,7 +9,7 @@ const carrouselInitialState = {
 };
 
 const carrouselReducer = (carrouselState = carrouselInitialState, action) => {
-    
+
     switch (action.type) {
         case 'SET_ACTION_MOVIES':
             return (
@@ -58,6 +58,18 @@ const carrouselReducer = (carrouselState = carrouselInitialState, action) => {
                 {
                     ...carrouselState,
                     crimeMovies: carrouselState.crimeMovies.concat(action.payload)
+                }
+            );
+        case 'RESET_CARROUSEL':
+            return (
+                {
+                    actionMovies: [],
+                    thrillerMovies: [],
+                    animationMovies: [],
+                    romanceMovies: [],
+                    horrorMovies: [],
+                    sciFiMovies: [],
+                    crimeMovies: []
                 }
             );
         default:
