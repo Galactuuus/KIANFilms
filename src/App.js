@@ -4,6 +4,7 @@ import Main from './Containers/Main/Main.js';
 import Home from './Containers/Home/Home.js'
 import Dashboard from './Containers/Dashboard/Dashboard.js'
 import Footer from './Components/footer/Footer';
+import ChangeView from './Containers/changeView/changeView';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" component={Main} exact />
           <Route path="/home" component={Home} exact />
           <Route path="/dashboard" component={Dashboard} exact />
+          <Route path="/update" component={ChangeView} exact />
         </Switch>
       </BrowserRouter>
       <Footer/>

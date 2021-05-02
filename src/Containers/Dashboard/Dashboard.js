@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import getUser from '../../Store/actions/actionGetUserProfile';
 import getOrders from '../../Store/actions/actionGetUserOrders';
 import dateFormatter from '../../util/dateFormatter';
+import ChangeView from '../changeView/changeView';
 
 const Dashboard = () => {
 
@@ -77,17 +78,20 @@ const Dashboard = () => {
                             <i className="far fa-address-card"></i>
                             <i className="far fa-envelope"></i>
                             <i className="far fa-calendar-alt"></i>
+                            <i className="fa  fa-lock"></i>
                             <i className="fas fa-door-open"></i>
                         </div>
                         <div className="infoColumn">
                             {user && <div>{user.userName}</div>}
                             {user && <div>{user.email}</div>}
                             {user && <div>{user.date}</div>}
+                            {user && <div>******</div>}
                             <div className="signOut" onClick={(e) => signOut(e)}>Sign out</div>
                         </div>
                         <div className="changeColumn">
-                            {user && <div><button className="changeBtn">Cambiar</button></div>}
-                            {user && <div><button className="changeBtn">Cambiar</button></div>}
+                            {user && <div><button className="changeBtn" onClick={() => history.push({pathname: '/update', email: true})}>Cambiar</button></div>}
+                            {user && <div><button className="changeBtn" onClick={() => history.push({pathname: '/update', userName: true})}>Cambiar</button></div>}
+                            {user && <div><button className="changeBtn" onClick={() => history.push({pathname: '/update', password: true})}>Cambiar</button></div>}
                         </div>
                     </div>
                     <h4>Historial de pedidos</h4>

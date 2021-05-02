@@ -11,7 +11,6 @@ const SearchCard = (props) => {
     const [styleSass, setStyleSass] = useState('infoMovie');
     const [popUp, setPopUp] = useState(false)
 
-    const history = useHistory();
     useEffect(() => {
         Modal.setAppElement('body');
     }, [])

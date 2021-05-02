@@ -1,6 +1,8 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import CarrouselMovies from '../carrouselMovies/CarrouselMovies';
 import './Carrousel.sass';
+import Modal from 'react-modal';
+import MovieRentView from '../MovieRentView/MovieRentView'
 
 const Carrousel = (props) => {
 
@@ -8,7 +10,10 @@ const Carrousel = (props) => {
     const flechaIzquierda = useRef();
     const flechaDerecha = useRef();
 
-    const movies = props.movies
+    const movies = props.movies;
+
+    const [popUp, setPopUp] = useState(false);
+    const [movieClick, setMovieClick] = useState();
 
     const slideRight = () => {
         fila.current.scrollLeft += fila.current.offsetWidth;
@@ -22,7 +27,7 @@ const Carrousel = (props) => {
         <>
             <div className="peliculas-recomendadas contenedor">
                 <div className="contenedor-titulo-controles">
-                    <h3>{props.title}</h3>
+                    <h3 className="contenedor-titulo">{props.title}</h3>
                     <div className="indicadores"></div>
                 </div>
 
@@ -31,7 +36,7 @@ const Carrousel = (props) => {
 
                     <div ref={fila} className="contenedor-carousel">
                         <div className="carousel">
-                            {movies && movies.map(element => <CarrouselMovies key={movies.indexOf(element)} poster={element.poster} link={"/home"}/>)}
+                            {movies && movies.map(element => <CarrouselMovies key={movies.indexOf(element)} poster={element.poster} movie={element} link={"/home"}/>)}
                         </div>
                     </div>
 
