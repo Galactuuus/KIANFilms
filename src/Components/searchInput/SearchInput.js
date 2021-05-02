@@ -1,18 +1,15 @@
 import './SearchInput.sass';
-import React, { useEffect, useRef } from 'react';
-import fetchByParam from '../../Services/fetchByParam.js';
+import React from 'react';
 import { searchingTrue, searchingFalse } from '../../Store/actions/actionSearching.js';
-import { addMovies, removeMovies } from '../../Store/actions/actionMovies.js'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const SearchInput = () => {
 
     const dispatch = useDispatch();
-    const searching = useSelector((state) => state.searching)
 
     const SearchMovies = async (e) => {
         if(e !== "" ){
-            if(searching === false) dispatch(searchingTrue({ search: true, data: e } ));
+            dispatch(searchingTrue({ search: true, data: e } ));
         }else{
             dispatch(searchingFalse());
         }

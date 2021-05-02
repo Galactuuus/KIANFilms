@@ -59,12 +59,13 @@ const Home = () => {
                             if (!movie) {
                                 return (
                                     <div className="searchedMovies">
-                                        <div className="movieContainer">No se han encontrado peliculas!</div>
                                         <div className="movieContainer">Sugerencias:
-                                            <li>Busca por género: Accion, deporte, drama, comedia.. etc</li>
-                                            <li>Busca por reparto de Actores</li>
-                                            <li>Busca por titulo de pelicula</li>
-                                            <li>Busca por director</li>
+                                            <div className="searchLi">
+                                                <li>Busca por género: Accion, deporte, drama, comedia.. etc</li>
+                                                <li>Busca por reparto de Actores</li>
+                                                <li>Busca por titulo de pelicula</li>
+                                                <li>Busca por director</li>
+                                            </div>
                                         </div>
                                     </div>
                                 )

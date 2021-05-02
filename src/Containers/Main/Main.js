@@ -25,13 +25,13 @@ const Main = () => {
                 <div className="logForm">
                     {!entrance && <Login />}
                     {entrance && <Register />}
-                    {!entrance &&
+                </div>
+                {!entrance &&
                         <button className="mainBtnRegister" onClick={() => {
                             setEntrance(true);
                             setMsg(false)
                         }}>
                             Regístrate</button>}
-                </div>
             </div>
         </>
     )

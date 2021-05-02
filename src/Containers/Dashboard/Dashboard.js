@@ -89,8 +89,8 @@ const Dashboard = () => {
                             <div className="signOut" onClick={(e) => signOut(e)}>Sign out</div>
                         </div>
                         <div className="changeColumn">
-                            {user && <div><button className="changeBtn" onClick={() => history.push({pathname: '/update', email: true})}>Cambiar</button></div>}
                             {user && <div><button className="changeBtn" onClick={() => history.push({pathname: '/update', userName: true})}>Cambiar</button></div>}
+                            {user && <div><button className="changeBtn" onClick={() => history.push({pathname: '/update', email: true })}>Cambiar</button></div>}
                             {user && <div><button className="changeBtn" onClick={() => history.push({pathname: '/update', password: true})}>Cambiar</button></div>}
                         </div>
                     </div>
