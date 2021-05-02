@@ -31,7 +31,7 @@ const Carrousel = (props) => {
 
                     <div ref={fila} className="contenedor-carousel">
                         <div className="carousel">
-                            {movies && movies.map(element => <CarrouselMovies key={movies.indexOf(element)} poster={element.poster} movie={element} link={"/home"}/>)}
+                        {movies && movies.sort(() => Math.random() - 0.5).map(element => <CarrouselMovies key={movies.indexOf(element)} poster={element.poster} title={element.title} link={"/home"}/>)}
                         </div>
                     </div>
 
