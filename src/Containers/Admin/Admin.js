@@ -19,13 +19,17 @@ const Admin = () => {
     const [error, setError] = useState(null)
 
     const user = useSelector(state => state.user);
+    
+    let role
+    role = useSelector(state => state.loginState.role);
+    role = useSelector(state => state.user.role);
 
     const history = useHistory();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!cookies.getItem('auth')) history.push('/');
         dispatch(getUser());
+        if (role !== 'admin') history.push('/home');
     }, []);
     
     useEffect(() => {
@@ -74,7 +78,6 @@ const Admin = () => {
             });
             dispatch(getOrders(results.from + 10, results.limit));
             setCurrent(current + 1);
-
         }
     }
 

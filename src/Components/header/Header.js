@@ -1,12 +1,22 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import getUser from "../../Store/actions/actionGetUserProfile";
 import SearchInput from "../searchInput/SearchInput";
 import './Header.sass';
 
 const Header = () => {
+    
+    const dispatch = useDispatch();
 
-    const role = useSelector(state => state.loginState.role);
+    useEffect(() => {
+        dispatch(getUser());
+    }, [])
+
+    let role
+
+    role = useSelector(state => state.loginState.role);
+    role = useSelector(state => state.user.role);
 
     let userPanel;
 
