@@ -7,7 +7,7 @@ import './Header.sass';
 import logo from '../../logo2.png'
 
 const Header = () => {
-    
+
     const dispatch = useDispatch();
 
     useEffect(() => {
