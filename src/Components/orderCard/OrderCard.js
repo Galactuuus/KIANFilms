@@ -12,7 +12,7 @@ const OrderCard = (props) => {
             </div>
             <div className="posterSection">
                 <div className="movieOrderCard">
-                    <img className="DashboardCardPoster" src={process.env.PUBLIC_URL + "/img/" + props.poster}></img>
+                    <img className="DashboardCardPoster" src={process.env.PUBLIC_URL + "/img/" + props.poster} alt="movie poster"></img>
                 </div>
             </div>
         </div>

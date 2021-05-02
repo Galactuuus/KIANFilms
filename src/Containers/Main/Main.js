@@ -20,7 +20,7 @@ const Main = () => {
     return (
         <>
             <div className="main">
-                <div className="logo"><img className="imgLogo" src={logo}></img></div>
+                <div className="logo"><img className="imgLogo" src={logo} alt="KIANFilms logo"></img></div>
                 {msg && <div className="welcome">🥳  Gracias por registrarte, inicia sesión y comienza a disfrutar 🥳</div>}
                 <div className="logForm">
                     {!entrance && <Login />}

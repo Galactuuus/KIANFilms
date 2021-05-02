@@ -16,12 +16,13 @@ const Dashboard = () => {
     const [results, setResults] = useState({ from: 0, limit: 10 });
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (!cookies.getItem('auth')) history.push('/');
         dispatch(getUser());
         dispatch(getOrders(0, 10));
-    }, []);
+    }, [dispatch, history]);
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -30,7 +31,6 @@ const Dashboard = () => {
     const user = useSelector(state => state.user);
     const orders = useSelector(state => state.orders);
 
-    const dispatch = useDispatch();
 
     let msg;
     

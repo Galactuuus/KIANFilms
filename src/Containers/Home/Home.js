@@ -1,5 +1,5 @@
 import './Home.sass';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../Components/header/Header'
 import Carrousel from '../../Components/carrousel/Carrousel.js';
@@ -26,7 +26,6 @@ const Home = () => {
 
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         if (isLogged === false && !cookies.getItem('auth')) history.push('/');
         dispatch(resetMovies());
@@ -37,7 +36,7 @@ const Home = () => {
         dispatch(fetchByGenre('horror', 15));
         dispatch(fetchByGenre('sci-fi', 15));
         dispatch(fetchByGenre('crime', 15));
-    }, []);
+    }, [dispatch, history, isLogged]);
 
     return (
         <>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import MovieRentView from "../MovieRentView/MovieRentView";
 import Modal from 'react-modal';
 import './searchCard.sass';
@@ -37,7 +36,7 @@ const SearchCard = (props) => {
                 onMouseEnter={() => setStyleSass('onHover')}
                 onMouseLeave={() => setStyleSass('infoMovie')}
                 onClick={() => setPopUp(true)}>
-                <img className="imgMovie" src={process.env.PUBLIC_URL + "/img/" + props.item.poster} />
+                <img className="imgMovie" src={process.env.PUBLIC_URL + "/img/" + props.item.poster} alt="movie poster"/>
             </div>
             <Modal ariaHideApp={false} style={customStyles} isOpen={popUp}>
                 <button className="leavePopUp" onClick={() => setPopUp(false)}>X</button>

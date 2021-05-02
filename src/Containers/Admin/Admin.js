@@ -5,21 +5,18 @@ import { useHistory } from 'react-router';
 import DashboardHeader from '../../Components/dashboardHeader/DashboardHeader';
 import fetchUserByEmail from '../../Services/fetchUserByEmail';
 import getUserOrders from '../../Services/fetchUserOrders';
-import getOrders from '../../Store/actions/actionGetUserOrders';
 import getUser from '../../Store/actions/actionGetUserProfile';
 import dateFormatter from '../../util/dateFormatter'
 import './Admin.sass'
 
 const Admin = () => {
 
-    const [current, setCurrent] = useState(1);
-    const [results, setResults] = useState({ from: 0, limit: 10 });
     const [usersList, setUsersList] = useState({});
     const [orders, setOrders] = useState([]);
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
 
     const user = useSelector(state => state.user);
-    
+
     let role
     role = useSelector(state => state.loginState.role);
     role = useSelector(state => state.user.role);
@@ -31,66 +28,40 @@ const Admin = () => {
         dispatch(getUser());
         if (role !== 'admin') history.push('/home');
     }, []);
-    
+
     useEffect(() => {
         if (!user._id) setError(0);
-    }, [user])
-
-
+    }, [user]);
 
     const findByEmail = async (event) => {
         event.preventDefault();
         if (user._id && error !== 0) {
             setOrders([]);
 
-            let email = event.target.value;
-            let fetchedUsers
-            
-            if (email !== '') {
-                fetchedUsers = await fetchUserByEmail(email)
+            let inputEmail = event.target.value;
+            let fetchedUsers;
+
+            if (inputEmail !== '') {
+                fetchedUsers = await fetchUserByEmail(inputEmail)
                 setUsersList(fetchedUsers);
             }
-            
-            if (email !== '' && fetchedUsers.users.length >= 1) setError(3);
-            if (email !== '' && fetchedUsers.users.length < 1) setError(1);
-            if (email === '') {
+
+            if (inputEmail !== '' && fetchedUsers.users.length >= 1) setError(3);
+            if (inputEmail !== '' && fetchedUsers.users.length < 1) setError(1);
+            if (inputEmail === '') {
                 setUsersList({});
-                setError(null)
+                setError(null);
             }
         }
     }
 
     const selectUser = async (id) => {
 
-        const userOrders = await getUserOrders(id, results.from, results.limit);
+        const userOrders = await getUserOrders(id);
 
         if (userOrders.orders.length <= 0) setError(2);
 
         setOrders(userOrders.orders);
-    }
-
-    const nextPage = (e) => {
-        e.preventDefault();
-        if (current < usersList.pages) {
-            setResults({
-                from: results.from + 10,
-                limit: 10
-            });
-            dispatch(getOrders(results.from + 10, results.limit));
-            setCurrent(current + 1);
-        }
-    }
-
-    const prevPage = (e) => {
-        e.preventDefault();
-        if (current > 1) {
-            setResults({
-                from: results.from - 10,
-                limit: 10
-            });
-            dispatch(getOrders(results.from - 10, results.limit));
-            setCurrent(current - 1);
-        }
     }
 
     const signOut = (e) => {
@@ -156,7 +127,7 @@ const Admin = () => {
                     {orders.length === 0 && <div className="searchingClients">
                         <div className="usersList">
                             {usersList.users && usersList.users.map(element => <div className="user" key={usersList.users.indexOf(element)}>
-                                <div>{element.email}</div>
+                                <div className="emailsList">{element.email}</div>
                                 <button className="selectUser" onClick={() => selectUser(element._id)}>Select</button>
                             </div>)}
                         </div>
@@ -184,11 +155,6 @@ const Admin = () => {
 
                     {msg}
 
-                    {error === 3 && <div className="pagination">
-                        <i className="fas fa-angle-left" onClick={(e) => prevPage(e)}></i>
-                        <div>page {current} of {usersList.pages ? usersList.pages : 1}</div>
-                        <i className="fas fa-angle-right" onClick={(e) => nextPage(e)}></i>
-                    </div>}
                 </div>
             </div>
         </>

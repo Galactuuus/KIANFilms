@@ -43,12 +43,10 @@ const CarrouselMovies = (props) => {
     return (
         <>
             <div className="pelicula" ref={movie} onMouseEnter={(e) => zoomIn(e)} onClick={() => setPopUp(true)} onMouseLeave={(e) => undoZoom(e)}>
-                <Link to={props.link}>
-                    <div className="movieTitle" ref={title}>
-                        <div className="movieTitleText">{props.title}</div>
-                    </div>
-                    <img className="cardPoster" src={process.env.PUBLIC_URL + "/img/" + props.poster} alt="movie poster"></img>
-                </Link>
+                <div className="movieTitle" ref={title}>
+                    <div className="movieTitleText">{props.title}</div>
+                </div>
+                <img className="cardPoster" src={process.env.PUBLIC_URL + "/img/" + props.poster} alt="movie poster"></img>
             </div>
 
 

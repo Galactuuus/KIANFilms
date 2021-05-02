@@ -19,7 +19,7 @@ const Login = () => {
 
     useEffect(() => {
         focusEmail.current.focus();
-    }, []);
+    }, [focusEmail]);
 
     const Validation = async (e) => {
         e.preventDefault();

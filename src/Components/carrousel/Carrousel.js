@@ -27,15 +27,19 @@ const Carrousel = (props) => {
                 </div>
 
                 <div className="contenedor-principal">
-                    <button role="button" onClick={slideLeft} ref={flechaIzquierda} className="flecha-izquierda"><i className="fas fa-angle-left"></i></button>
+                    <button type="button" onClick={slideLeft} ref={flechaIzquierda} className="flecha-izquierda"><i className="fas fa-angle-left"></i></button>
 
                     <div ref={fila} className="contenedor-carousel">
                         <div className="carousel">
+<<<<<<< HEAD
                         {movies && movies.map(element => <CarrouselMovies key={movies.indexOf(element)} movie={element} poster={element.poster} title={element.title} link={"/home"}/>)}
+=======
+                        {movies && movies.sort(() => Math.random() - 0.5).map(element => <CarrouselMovies key={movies.indexOf(element)} movie={element} poster={element.poster} title={element.title}/>)}
+>>>>>>> 11023657f0bbccc1e0599341850d934a97ff0f90
                         </div>
                     </div>
 
-                    <button role="button" onClick={slideRight} ref={flechaDerecha} className="flecha-derecha"><i className="fas fa-angle-right"></i></button>
+                    <button type="button" onClick={slideRight} ref={flechaDerecha} className="flecha-derecha"><i className="fas fa-angle-right"></i></button>
                 </div>
             </div>
 

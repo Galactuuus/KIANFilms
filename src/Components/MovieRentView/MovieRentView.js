@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import './MovieRentView.sass'
 import fetchRentMovie from '../../Services/fetchRentMovie'
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
 import fetchMyMovies from '../../Services/fetchMyMovies'
 
 const MovieRentView = (props) => {
@@ -12,14 +11,18 @@ const MovieRentView = (props) => {
 
     const history = useHistory();
 
-    useEffect(async () => {
+    useEffect(() => {
+        fetch()
+    }, []);
+
+    const fetch = async () => {
         let movies = await fetchMyMovies();
         setMyMovies(movies);
-    }, [])
+    }
 
     return (
         <>
-            {myMovies.map(movie => { if(movie.movie === props.movie._id && bought === false) setBought(true)})}
+            {myMovies.forEach(movie => { if (movie.movie === props.movie._id && bought === false) setBought(true) })}
             <div className="movieRent">
                 <div className="movieRentUp">
                     <div className="titleSide">
@@ -35,7 +38,7 @@ const MovieRentView = (props) => {
                     <div className="posterSide">
                         <div className="posterTop"></div>
                         <div className="posterImg">
-                            <img src={process.env.PUBLIC_URL + "/img/" + props.movie.poster} />
+                            <img src={process.env.PUBLIC_URL + "/img/" + props.movie.poster} alt={props.movie.title} />
                         </div>
                         <div className="posterDirector">
                             <h4>Director</h4><h4>:  {props.movie.director}</h4>
