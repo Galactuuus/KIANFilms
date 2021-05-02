@@ -23,7 +23,7 @@ const Register = () => {
 
     useEffect(() => {
         focusEmail.current.focus();
-    }, [focusEmail]);
+    }, []);
 
     const checkPw = (pw) => {
         if (pw.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#<>$+@$!%*?&])[A-Za-z\d[#<>$+@$!%*?&]{8,}$/gm)) {

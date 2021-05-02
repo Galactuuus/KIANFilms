@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Contenidos
+- [Configuracion](#Configuración)
+- [Ejecutar](#Ejecutar)
+- [Estructura de carpetas](#Project-folder-structure)
+- [Features](#Features)
+#
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# KIANFilms
+Es una aplicación web hecha por [Ángel Rodríguez](https://www.linkedin.com/) y [Jarki Melendez](https://www.linkedin.com/in/jarki-melendez/) para el "alquiler" de películas online y administración de pedidos
 
-In the project directory, you can run:
+Está hecha con:
+- React 17 con Redux
+- NodeJs con express
+- Mongo con mongoose
+#
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Configuración
+- Backend: Descargar e instalar el repositorio de [backend](https://github.com/jarki7777/API_Rest).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+El servidor de mongo correrá por defecto en el puerto 4000 (configurable en las variables de entorno).
+- Frontend: Descargar e instalar este repositorio
 
-### `npm test`
+        npm i
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Por defecto el servidor de react correrá en el puerto 3000 si está disponible
 
-### `npm run build`
+#
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Run
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+En el directorio raíz:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        npm start
 
-### `npm run eject`
+Se abrirá una nueva pestaña del explorador con la dirección: http://localhost:3000/
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Ya puedes empezar a usar la app
+#
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Estructura de carpetas del proyecto
+                ├───public
+                └───src
+                        ├───public
+                        │   └───img
+                        └───src
+                        ├───Components
+                        │   ├───carrousel
+                        │   ├───carrouselMovies
+                        │   ├───dashboardHeader
+                        │   ├───footer
+                        │   ├───header
+                        │   ├───Login
+                        │   ├───MovieRentView
+                        │   ├───orderCard
+                        │   ├───Register
+                        │   ├───searchCard
+                        │   └───searchInput
+                        ├───Containers
+                        │   ├───Admin
+                        │   ├───changeView
+                        │   ├───Dashboard
+                        │   ├───Home
+                        │   └───Main
+                        ├───Services
+                        ├───Store
+                        │   ├───actions
+                        │   └───reducers
+                        └───util
+#
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Features
 
-## Learn More
+- Main: la página principal contiene los componentes de login y register y para poder acceder a la aplicación se debe estar registrado y loguearse 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Login de usuarios
+![localhost_3000_ (1)](https://user-images.githubusercontent.com/76188418/116827221-33f4ec00-ab98-11eb-861e-cb49975b1dd2.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Registro de usuarios
+![localhost_3000_](https://user-images.githubusercontent.com/76188418/116827220-335c5580-ab98-11eb-8482-a497fc30458e.png)
 
-### Code Splitting
+ - Home: Se muestran carruseles de películas de la base de datos por género. Al hacer click en cada una se desplega un modal con más información acerca de la película y la posibildad de alquilarla o verla en los pedidos si ya está alquilada. Haciendo click en la lupa se puede hacer una búsqueda en toda la base de datos de películas por género, reparto, director o título
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+ ![localhost_3000_home](https://user-images.githubusercontent.com/76188418/116827219-335c5580-ab98-11eb-95d9-3a909fd236ec.png)
 
-### Analyzing the Bundle Size
+ - Dashboard clientes: Los usuarios de tipo cliente pueden acceder a sus pedidos e información haciendo click en el ícono de perfil en la esquina superior derecha
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+ ![localhost_3000_home (1)](https://user-images.githubusercontent.com/76188418/116827218-32c3bf00-ab98-11eb-8fa1-214269f32ef9.png)
 
-### Making a Progressive Web App
+- Panel de administración: Los usuarios administradores al hacer click en el ícono en la esquina superior derecha acceden a un dashboard de búsqueda de clientes y sus pedidos
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![localhost_3000_home (2)](https://user-images.githubusercontent.com/76188418/116827216-32c3bf00-ab98-11eb-8a25-4b6a2220604b.png)
 
-### Advanced Configuration
+![localhost_3000_home (3)](https://user-images.githubusercontent.com/76188418/116827215-322b2880-ab98-11eb-96a4-e56a8bbf52c6.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Authors
 
-### `npm run build` fails to minify
+[Ángel Rodríguez](https://www.linkedin.com/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Jarki Melendez](https://www.linkedin.com/in/jarki-melendez/)
+
+[TOP](#Table-of-contents)
