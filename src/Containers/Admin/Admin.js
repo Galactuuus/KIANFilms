@@ -156,7 +156,7 @@ const Admin = () => {
                     {orders.length === 0 && <div className="searchingClients">
                         <div className="usersList">
                             {usersList.users && usersList.users.map(element => <div className="user" key={usersList.users.indexOf(element)}>
-                                <div>{element.email}</div>
+                                <div className="emailsList">{element.email}</div>
                                 <button className="selectUser" onClick={() => selectUser(element._id)}>Select</button>
                             </div>)}
                         </div>
