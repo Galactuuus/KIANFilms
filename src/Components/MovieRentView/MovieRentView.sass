@@ -1,0 +1,105 @@
+.movieRent
+    width: 100%
+    height: 95%
+
+.movieRentUp
+    width: 100%
+    height: 65%
+    display: flex
+    flex-direction: row
+
+.movieRentDown
+    width: 100%
+    height: 35%
+    background: green
+
+.titleSide
+    width: 50%
+    height: 100%
+
+.posterSide
+    width: 50%
+    height: 100%
+
+.titleTop
+    width: 100%
+    height: 5%
+
+.titleDiv
+    width: 100%
+    height: 20%
+    display: flex
+    align-items: center
+    justify-content: center
+    color: #05cc47
+
+.titleMid
+    width: 100%
+    height: 45%
+    display: flex
+    align-items: center
+    justify-content: center 
+    text-align: justify
+
+.titleMid p
+    color: white
+
+.titleButtons
+    width: 100%
+    height: 20%
+    display: flex
+    flex-direction: row
+    align-items: flex-end
+    justify-content: space-evenly
+
+.posterTop
+    width: 100%
+    height: 20%
+
+.posterImg
+    width: 100%
+    height: 15.25em
+    display: flex
+    align-items: center
+    justify-content: center
+
+.posterImg img
+    width: 25em
+    height: 100%
+
+.posterDirector
+    width: 100%
+    height: 15%
+    display: flex
+    align-items: flex-start
+    justify-content: center
+    color: #05cc47
+
+.posterDirector h4
+    cursor: pointer
+
+
+@media (max-width: 1350px)
+    .movieRentUp
+        align-items: center
+        flex-direction: column
+    
+    .movieRent
+        display: flex
+
+    .movieRentDown
+        display: none
+
+
+@media (max-width: 650px)
+    .posterImg img 
+        width: 20em
+        height: 90%
+
+
+@media (max-width: 550px)
+    .titleMid
+        display: none
+    
+    .titleButtons
+        margin-top: 6em

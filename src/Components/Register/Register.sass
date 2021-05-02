@@ -1,0 +1,67 @@
+.registerContainer
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+
+.registerForm
+    display: flex
+    flex-direction: column
+    align-items: center
+    height: 100%
+    margin-top: 1em
+    margin-bottom: 2em
+
+.badInput
+    margin-top: -0.01em
+    margin-bottom: -1em
+    font-size: 0.8em
+
+@media ( max-width: 350px )
+    .registerForm
+        transition: 1s ease
+        width: 90%
+
+@media (max-width: 1200px)
+    .registerForm
+        transition: 1s ease
+        width: 30%
+
+@media (max-width: 900px)
+    .registerForm
+        transition: 1s ease
+        width: 40%
+
+@media (max-width: 700px)
+    .registerForm
+        transition: 1s ease
+        width: 50%
+
+@media (max-width: 550px)
+    .registerForm
+        transition: 1s ease
+        width: 60%
+
+.okPw
+    background-color: rgb(220, 255, 220)
+    margin-top: 2em
+    padding: 1em
+    outline: none
+    border: none
+    border-radius: 2em
+    border-bottom: 2px solid #4dc47d
+
+.badPw
+    background-color: rgb(255, 220, 220)
+    margin-top: 2em
+    padding: 1em
+    outline: none
+    border: none
+    border-radius: 2em
+    transition: 1s ease
+    border-bottom: 2px solid red
+
+.errorMsg
+    display: flex
+    margin: 0.5em
+    font-size: 0.8em

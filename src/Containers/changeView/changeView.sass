@@ -1,0 +1,65 @@
+.changeView
+    width: 100%
+    min-height: 95vh
+    height: auto
+    padding: 0
+    margin: 0
+    background: linear-gradient(-120deg,#181a1b,#05cc47, #4dc47d,#4dc47d, #05cc4d, #181a1b,)
+    display: flex
+    align-items: center
+    flex-direction: column
+    justify-content: center
+
+.emailChange
+    width: 50%
+    min-height: 45vh
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: flex-start
+    background: rgba( 255, 255, 255, 0.80 )
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
+    backdrop-filter: blur( 0.0px )
+    -webkit-backdrop-filter: blur( 0.0px )
+    border-radius: 10px
+    border: 1px solid rgba( 255, 255, 255, 0.18 )
+
+.emailChangeForm
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+.changeInput
+    margin-top: 1.5em
+    padding: 1em
+    outline: none
+    border: none
+    border-radius: 2em
+    border-bottom: 2px solid #4dc47d
+
+
+@media ( max-width: 350px )
+    .emailChange
+        transition: 1s ease
+        width: 80%
+
+@media (max-width: 1200px)
+    .emailChange
+        transition: 1s ease
+        width: 30%
+
+@media (max-width: 900px)
+    .emailChange
+        transition: 1s ease
+        width: 40%
+
+@media (max-width: 700px)
+    .emailChange
+        transition: 1s ease
+        width: 50%
+
+@media (max-width: 550px)
+    .emailChange
+        transition: 1s ease
+        width: 80%
