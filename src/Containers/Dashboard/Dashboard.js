@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import getUser from '../../Store/actions/actionGetUserProfile';
 import getOrders from '../../Store/actions/actionGetUserOrders';
 import dateFormatter from '../../util/dateFormatter';
-import ChangeView from '../changeView/changeView';
 
 const Dashboard = () => {
 
@@ -101,6 +100,7 @@ const Dashboard = () => {
                             title={element.movie.title} date={dateFormatter(element.date)}
                             returnDate={dateFormatter(element.returnDate)}
                             poster={element.movie.poster}
+                            movie={element}
                         />)}
 
                     {msg}
